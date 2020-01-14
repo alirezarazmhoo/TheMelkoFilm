@@ -85,7 +85,11 @@ namespace FinalMelkBin.Controllers.api
 
         public object LoadMelks(int page)
         {
-            var result = Context.melks.Select(p => new
+			var thisyear = DateTime.Now.Year;
+			var thisMonth = DateTime.Now.Month;
+			var Today = DateTime.Now.Day;
+
+            var result = Context.melks.Where(s=>s.expireDate.Year >= thisyear && s.expireDate.Month >=thisMonth && s.statusId==1.ToString()).Select(p => new
             {
                 p.id,
                 p.userType,
@@ -145,6 +149,7 @@ namespace FinalMelkBin.Controllers.api
                 p.city.cityName,
                 p.Categori.categoriName,
                 p.ChildSubCategori.childSubCategoriName
+				
                 //x.id,
                 //x.title,
                 //x.telephone,
@@ -1940,7 +1945,9 @@ namespace FinalMelkBin.Controllers.api
 
         public object LoadJobs(int page)
         {
-            var result = Context.jobs.Select(x => new
+			
+
+			var result = Context.jobs.Where(s=>s.status==1.ToString()).Select(x => new
             {
                 x.id,
                 x.title,
@@ -2366,16 +2373,6 @@ namespace FinalMelkBin.Controllers.api
             //PEquipment = PEquipment.Select(p=>p.id).ToList();
             return new { Data = PJob.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.jobSubCategoriId, x.id, x.title, x.childjobSubCategoriId,x.lon, x.lat, x.subCityId, x.jobCategoriId, x.imageUrl,x.JobAddress }), totalCount = PJob.Count() };
         }
-
-
-
-
-
-
-
-
-
-
         [HttpPost]
         [Route("api/Home/SearchJobByTitle/{page}")]
 
@@ -2879,10 +2876,6 @@ namespace FinalMelkBin.Controllers.api
             var result = Context.childSubEquipmentCategoris.Where(p => p.equipmentSubCategoriId== idEquipmentSubCategori).Select(x => new { x.id, x.childSubEquipmentCategoriName }).ToList();
             return result;
         }
-
-
-
-
         //ثبت وسیله
         [HttpPost]
         [Route("api/Home/AddEquipment")]
@@ -3122,7 +3115,7 @@ namespace FinalMelkBin.Controllers.api
 
         public object LoadEquipments(int page)
         {
-            var result = Context.equipments.Select(x => new
+            var result = Context.equipments.Where(s=>s.status ==1.ToString()).Select(x => new
             {
                 x.id,
                 x.title,
