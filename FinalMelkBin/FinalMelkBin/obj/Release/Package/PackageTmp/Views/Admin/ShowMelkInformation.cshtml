@@ -1,0 +1,706 @@
+﻿@using FinalMelkBin.Models;
+
+
+@{ 
+    TheFinalMelkobinEntities Context = new TheFinalMelkobinEntities();
+    long IdMelk = Convert.ToInt64(ViewBag.IdMelk);
+    var Melk = Context.melks.Where(p => p.id == IdMelk).Select(p => new { p.title, p.adminComment,p.film,p.imageUrl,p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban, p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby, p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi, p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh, p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf, p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh,p.gheymateRahn,p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana, p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate, p.city.cityName, p.Categori.categoriName }).ToList();
+    var Pictures = Context.pictures.Where(p => p.melkId == IdMelk).Select(p => new { p.url }).ToList();
+
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='shortcut icon' type='image/x-icon' href='~/Images/favicon.ico' />
+
+    <link href="~/css/entypo.css" rel="stylesheet">
+
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/css/plugins/css3-animate-it-plugin/animations.css" rel="stylesheet">
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/plugins/chartist/chartist.min.css" rel="stylesheet">
+    <link href="~/css/mouldifi-core.css" rel="stylesheet">
+
+
+    <link href="~/css/mouldifi-forms.css" rel="stylesheet">
+    <link href="~/css/plugins/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="~/js/plugins/datatables/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet">
+
+    <link href="~/css/bootstrap-rtl.min.css" rel="stylesheet">
+
+    <link href="~/css/mouldifi-rtl-core.css" rel="stylesheet">
+    <link href="~/css/Index.css" rel="stylesheet" />
+    <title>ShowMelkInformation</title>
+</head>
+<body>
+  
+    
+
+        @foreach (var item in Melk)
+        {
+            <div class="panel panel-success">
+                
+                    <div class="panel-heading" style="text-align:center"><h3>خصوصیات آگهی @item.title </h3></div>
+                
+            </div>
+        }
+    <div class="dt-body-center">
+        <table class="table text-center table-responsive table-bordered table-hover">
+            <tr>
+                <th class="text-center text-info">عنوان</th>
+                <th class="text-center text-info">ویژگی</th>
+            </tr>
+            @foreach (var item in Melk)
+            {
+                <tr>
+                    <th class="text-center">تلفن</th>
+
+                    <th class="text-center">@item.telephone</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">موبایل</th>
+
+                    <th class="text-center">@item.mobile</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">نشانی پستی</th>
+
+                    <th class="text-center">@item.address</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">توضیحات تکمیلی</th>
+
+                    <th class="text-center">@item.tozihatTakmily</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">پارکینگ</th>
+                    @if (item.parking == 1)
+                    {
+                        <th class="text-center">روباز</th>
+                    }
+                    @if (item.parking == 2)
+                    {
+                        <th class="text-center">سقف</th>
+                    }
+                    @if (item.parking == 3)
+                    {
+                        <th class="text-center">پارکینگ مهمان</th>
+                    }
+                </tr>
+                <tr>
+                    <th class="text-center">نگهبان 24 ساعته</th>
+
+                    @if (item.isNegahban)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">سیستم گرمایش مرکزی</th>
+
+                    @if (item.isSystemGarmayeshiMarkazi)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">کابینت</th>
+
+                    @if (item.isKabinet)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">حیاط</th>
+
+                    @if (item.isHayat)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">سالن اجتماع</th>
+
+                    @if (item.isSalonEjtema)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">لابی</th>
+
+                    @if (item.isLaby)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">استخر و سونا</th>
+
+                    @if (item.isEstakhrVaSona)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">سالن ورزشی</th>
+
+                    @if (item.isSalonVarzeshi)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">پنت هاوس</th>
+
+                    @if (item.isPentHouse)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">فضای سبز</th>
+
+                    @if (item.isFazayeSabz)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">دستشویی فرنگی</th>
+
+                    @if (item.IsDastshooyiFarangi)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">مستر</th>
+
+                    @if (item.IsMaster)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">وضعیت سکونت</th>
+
+                    @if (item.vaziyatSokoonat)
+                    {
+                        <th class="text-center">خالی</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">مستاجر دارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">موقعیت جغرافیایی</th>
+
+                    @if (item.mogheiyatJographiya == 1)
+                    {
+                        <th class="text-center">شمالی</th>
+                    }
+                    @if (item.mogheiyatJographiya == 2)
+                    {
+
+                        <th class="text-center">جنوبی</th>
+                    }
+                    @if (item.mogheiyatJographiya == 3)
+                    {
+
+                        <th class="text-center">شرقی</th>
+                    }
+                    @if (item.mogheiyatJographiya == 4)
+                    {
+
+                        <th class="text-center">غربی</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">درب ضد سرقت</th>
+
+                    @if (item.isDarbZedSerghat)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">کف پوش</th>
+
+                    @if (item.kafpoosh == 1)
+                    {
+                        <th class="text-center">موکت</th>
+                    }
+                    @if (item.kafpoosh == 2)
+                    {
+
+                        <th class="text-center">سرامیک</th>
+                    }
+                    @if (item.kafpoosh == 3)
+                    {
+
+                        <th class="text-center">پارکت</th>
+                    }
+                    @if (item.kafpoosh == 4)
+                    {
+
+                        <th class="text-center">موزاییک</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">کولر</th>
+
+                    @if (item.cooler == 1)
+                    {
+                        <th class="text-center">آبی</th>
+                    }
+                    @if (item.cooler == 2)
+                    {
+
+                        <th class="text-center">گازی</th>
+                    }
+                    @if (item.cooler == 3)
+                    {
+
+                        <th class="text-center">چیلر</th>
+                    }
+
+
+                </tr>
+                <tr>
+                    <th class="text-center">گرمایشی</th>
+
+                    @if (item.garmayeshi == 1)
+                    {
+                        <th class="text-center">بخاری</th>
+                    }
+                    @if (item.garmayeshi == 2)
+                    {
+
+                        <th class="text-center">شوفاژ - پکیج</th>
+                    }
+                    @if (item.garmayeshi == 3)
+                    {
+
+                        <th class="text-center">چیلر</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">آیفون تصویری</th>
+
+                    @if (item.isIphoneTasviry)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">دیوار</th>
+
+                    @if (item.divar == 1)
+                    {
+                        <th class="text-center">دیوار کوب</th>
+                    }
+                    @if (item.divar == 2)
+                    {
+
+                        <th class="text-center">رنگ و روغن</th>
+                    }
+                    @if (item.divar == 3)
+                    {
+
+                        <th class="text-center">کاغذ دیواری</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">سقف</th>
+
+                    @if (item.saghf == 1)
+                    {
+                        <th class="text-center">گچ بری شده</th>
+                    }
+                    @if (item.saghf == 2)
+                    {
+
+                        <th class="text-center">کناف کاری شده</th>
+                    }
+                    @if (item.saghf == 3)
+                    {
+
+                        <th class="text-center">روشنایی مخفی</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">کمد دیواری</th>
+
+                    @if (item.isKomodDivari)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">پنجره دو جداره</th>
+
+                    @if (item.isPangerehDojedareh)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">ندارد</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">نوع دسته بندی</th>
+
+                    @if (item.typeDastebandi == 1)
+                    {
+                        <th class="text-center">خرید</th>
+                    }
+                    @if (item.typeDastebandi == 2)
+                    {
+
+                        <th class="text-center">فروش</th>
+                    }
+                    @if (item.typeDastebandi == 3)
+                    {
+
+                        <th class="text-center">اجاره</th>
+                    }
+                    @if (item.typeDastebandi == 4)
+                    {
+
+                        <th class="text-center">رهن</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">قیمت فروش</th>
+
+                    <th class="text-center">@item.gheymateForoosh</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">قیمت رهن</th>
+
+                    <th class="text-center">@item.gheymateRahn</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">قیمت اجاره</th>
+
+                    <th class="text-center">@item.gheymateEjareh</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">نوع ملک</th>
+
+                    @if (item.melkType == 1)
+                    {
+                        <th class="text-center">آپارتمان</th>
+                    }
+                    @if (item.melkType == 2)
+                    {
+
+                        <th class="text-center">خانه</th>
+                    }
+                    @if (item.melkType == 3)
+                    {
+
+                        <th class="text-center">زمین</th>
+                    }
+                    @if (item.melkType == 4)
+                    {
+
+                        <th class="text-center">مغازه</th>
+                    }
+                    @if (item.melkType == 5)
+                    {
+
+                        <th class="text-center">کارگاه</th>
+                    }
+                    @if (item.melkType == 6)
+                    {
+
+                        <th class="text-center">ویلا</th>
+                    }
+                    @if (item.melkType == 7)
+                    {
+
+                        <th class="text-center">آپارتمان مبله</th>
+                    }
+                    @if (item.melkType == 8)
+                    {
+
+                        <th class="text-center">دفترکار</th>
+                    }
+                    @if (item.melkType == 9)
+                    {
+
+                        <th class="text-center">مستغلات</th>
+                    }
+
+                    @if (item.melkType == 10)
+                    {
+
+                        <th class="text-center">کلنگی</th>
+                    }
+                    @if (item.melkType == 11)
+                    {
+
+                        <th class="text-center">کارخانه</th>
+                    }
+                    @if (item.melkType == 12)
+                    {
+
+                        <th class="text-center">باغ و باغچه</th>
+                    }
+
+                    @if (item.melkType == 13)
+                    {
+
+                        <th class="text-center">دامداری و دام پروری</th>
+                    }
+                    @if (item.melkType == 14)
+                    {
+
+                        <th class="text-center">سوله</th>
+                    }
+                    @if (item.melkType == 15)
+                    {
+
+                        <th class="text-center">انبار</th>
+                    }
+
+
+
+
+                </tr>
+                <tr>
+                    <th class="text-center">سال ساخت</th>
+
+                    <th class="text-center">@item.pDate</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">سند</th>
+
+                    @if (item.sanad == 1)
+                    {
+                        <th class="text-center">دارد</th>
+                    }
+                    @if (item.sanad == 2)
+                    {
+
+                        <th class="text-center">قولنامه ای</th>
+                    }
+                    @if (item.sanad == 3)
+                    {
+
+                        <th class="text-center">در دست اقدام</th>
+                    }
+
+
+                </tr>
+                <tr>
+                    <th class="text-center">نوع سند</th>
+
+                    @if (item.sanadType)
+                    {
+                        <th class="text-center">شخصی</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">تجاری</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">نوع اسکلت</th>
+
+                    @if (item.typeEskelet)
+                    {
+                        <th class="text-center">فلزی</th>
+                    }
+                    else
+                    {
+
+                        <th class="text-center">تیرچه و بلوک</th>
+                    }
+
+                </tr>
+                <tr>
+                    <th class="text-center">تعداد طبقه</th>
+
+                    <th class="text-center">@item.tedadTabaghat</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">تعداد واحد در طبقه</th>
+
+                    <th class="text-center">@item.tedadVahedDarTabaghe</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">تعداد اتاق خواب</th>
+
+                    <th class="text-center">@item.tedadOtaghkhab</th>
+
+                </tr>
+                <tr>
+                    <th class="text-center">  تصویر اصلی</th>
+
+
+                    <th style="width:60px;height:70px;"><img src="@item.imageUrl" style="width:60px;height:70px;" /></th>
+
+
+                </tr>
+                <tr>
+                    <th class="text-center">  دیگر تصاویر</th>
+                    <th style="width:60px;height:70px;">
+                        @foreach (var pics in Pictures)
+                        {
+                            <img src="@pics.url" style="width:60px;height:70px;" />
+                        }
+
+                    </th>
+                </tr>
+
+                <tr>
+                    <th class="text-center"> فیلم آگهی</th>
+                    <th style="width:60px;height:70px;"><video src="@item.film" style="width:60px;height:70px;"></video></th>
+
+
+                </tr>
+                <tr>
+                    <th class="text-center">نظر کارشناس</th>
+
+                    <th class="text-center">@item.adminComment</th>
+
+
+                </tr>
+
+            }
+
+
+        </table>
+    </div>
+</body>
+</html>

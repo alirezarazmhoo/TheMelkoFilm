@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5544c5fdae2d4b0c8e0b07911e52a6d5" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="melkofilm_dbModel.buildDate" Width="1.5" PointX="9" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.Categori" Width="1.5" PointX="9" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.city" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.equipmentCategori" Width="1.5" PointX="3" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.equipmentPicture" Width="1.5" PointX="7.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.equipmentSubCategori" Width="1.5" PointX="3" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.equipmetAcceptUser" Width="1.5" PointX="7.5" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.equipmetUser" Width="1.5" PointX="3" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.jobAcceptUser" Width="1.5" PointX="10.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.jobCategori" Width="1.5" PointX="6" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.jobPicture" Width="1.5" PointX="10.5" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.jobSubCategori" Width="1.5" PointX="6" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.jobUser" Width="1.5" PointX="6" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.melkAcceptUser" Width="1.5" PointX="13.5" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.picture" Width="1.5" PointX="13.5" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.roll" Width="1.5" PointX="6.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.SubCategori" Width="1.5" PointX="9" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.subCity" Width="1.5" PointX="3" PointY="46.125" IsExpanded="true" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_SubCategori_Categori" ManuallyRouted="false" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_subCity_city" ManuallyRouted="false" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipmentSubCategori_equipmentCategori" ManuallyRouted="false" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_jobSubCategori_jobCategori" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.AdminUser" Width="1.5" PointX="4.5" PointY="12.125" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.RollAdmin" Width="1.5" PointX="8.75" PointY="12.25" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_RollAdmin_RollAdmin" />
+        <AssociationConnector Association="melkofilm_dbModel.UserRoll" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.childjobSubCategori" Width="1.5" PointX="8.25" PointY="41.125" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.ChildSubCategori" Width="1.5" PointX="11.25" PointY="44.25" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.childSubEquipmentCategori" Width="1.5" PointX="5.25" PointY="26.125" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_childSubEquipmentCategori_equipmentSubCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_childjobSubCategori_jobSubCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_ChildSubCategori_SubCategori" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.equipment" Width="1.5" PointX="7.5" PointY="29.375" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipment_city" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipment_childSubEquipmentCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipment_equipmentCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipment_equipmentSubCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipment_equipmetUser" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipment_subCity" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipmentPictures_equipment" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_equipmetAcceptUser_equipment" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.job" Width="1.5" PointX="10.5" PointY="28.875" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_job_city" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_job_childjobSubCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_job_jobCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_job_jobSubCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_job_jobUser1" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_job_subCity" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_jobAcceptUser_job" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_jobPicture_job" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.melk" Width="1.5" PointX="16.5" PointY="26.5" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_melk_buildDate" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_melk_Categori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_melk_city" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_melk_ChildSubCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_melk_SubCategori" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_melk_subCity" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_melkAcceptUser_melk" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_pictures_melk" />
+        <EntityTypeShape EntityType="melkofilm_dbModel.user" Width="1.5" PointX="9" PointY="47.75" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_melk_user" />
+        <AssociationConnector Association="melkofilm_dbModel.FK_user_roll" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

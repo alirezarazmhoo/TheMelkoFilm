@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "listAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section viewscript{
+    <script src="~/Scripts/ListAdmin/ListAdminTable.js"></script>
+    <script src="~/Scripts/ListAdmin/LoadAdmin.js"></script>
+}
+
+
+<div style="background-color:#1c1616">
+    <img src="~/Pictures/Admin-icon.png" style="width:100px;height:100%;background-color:white" />
+
+    <ol class="breadcrumb breadcrumb-2" style="background-color:#1c1616">
+        <li><a href="~/Home/Index" style="color:white"><i class="glyphicon glyphicon-home" style="color:white"></i>خانه</a></li>
+        <li class="active" style="color:white"><strong> فعالیت ادمین ها در خصوص آگهی های املاک</strong></li>
+    </ol>
+</div>
+
+<button type="button" id="sucessModal" class="btn btn-success" data-toggle="modal" data-target="#modal-success" style="visibility:hidden">
+    مدال Success
+</button>
+<div class="modal modal-success " id="modal-success">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"> موفقیت آمیز</h4>
+            </div>
+            <div class="modal-body">
+                <p>اطلاعات با موفقیت حذف گردید</p>
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<div class="row" id="divlistAdmin">
+
+    <div class="col-lg-12 animatedParent animateOnce z-index-50" style="width:100%;">
+
+        <div class="panel panel-default animated fadeInUp" style="border-width:5px;border-color:#2f2a2a;border-style:solid;">
+
+            <div class="panel-body box box-default color-palette-box " style=" background-color:#2f2a2a;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label style="color:white;"> نمایش رکورد از:</label>
+                            <select name="state" class="form-control" id="maxRows" style="font-size:medium">
+                                <option value="5">5</option>
+                                <option value="50000">همه</option>
+                                <option id="selectFirst" value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="75">75</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" style="color:white;"> جستجو براساس:</label>
+                            <select class="form-control" name="StatusCode" id="StatusCode" style="font-size:medium">
+                                <option value="">همه</option>
+                                <option value="1">تاییدشده ها</option>
+                                <option value="2">در حال انتظار</option>
+                                <option value="3">رد شده</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3 " style="margin-top:auto">
+                        <label for="exampleFormControlInput1" style="color:white;"> توضیحات:</label>
+                        <div class="form-group">
+                            <input type="text" id="Description" placeholder="عنوان.." name="search" />
+
+                        </div>
+
+                    </div>
+                    <div style="margin-top:25px;margin-left:100px;font-size:medium">
+                        <div class="form-group row">
+                            <button id="serchmelks" type="submit" onclick="SearchAdminActivity();" class="btn  btn-success btn-flat" style="font-size:medium"><span class="glyphicon glyphicon-search"></span> جستجو</button>
+                            <button class="btn  btn-danger btn-flat" onclick="RemoveAll()" style="font-size:medium" data-toggle="modal" data-target="#RemoveAllModal">حذف همه</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="divAdmin" class="table-responsive" style="height:500px;">
+
+            </div>
+            <div class="pagination-container" style="cursor:pointer">
+                <nav>
+                    <ul class="pagination"></ul>
+                </nav>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="RemoveModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger ">حذف </h4>
+            </div>
+            <div class="modal-body">
+                <p>آیا مطمعن به ادامه عملیات هستید؟</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="OkButtun" data-dismiss="modal">تایید</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveAllModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger ">حذف </h4>
+            </div>
+            <div class="modal-body">
+                <p>همه رکورد ها حذف خواهند شد ، آیا مایل به انجام این عملیات هستید؟؟</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="OkRemoveAllButtun" data-dismiss="modal">تایید</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    window.onload = Load;
+    function Load() {
+        $('#StatusCode option').prop('selected', function () {
+            return this.defaultSelected;
+        });
+        //$('#maxRows option').prop('selected', function () {
+        //    return this.defaultSelected;
+        //});
+        LoadListAdmin();
+
+        var table = '#adminmelk';
+        $('#maxRows').on('click', function () {
+            $('.pagination').html('')
+            var trnum = 0
+            var maxRows = parseInt($(this).val())
+            var totalRows = $(table + ' tbody tr').length
+            $(table + ' tr:gt(0)').each(function () {
+                trnum++
+                if (trnum > maxRows) {
+                    $(this).hide()
+                }
+                if (trnum <= maxRows) {
+                    $(this).show()
+                }
+            })
+            if (totalRows > maxRows) {
+                var pagenum = Math.ceil(totalRows / maxRows)
+                for (var i = 1; i <= pagenum;) {
+                    $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span></span>\</li>').show()
+
+
+                }
+            }
+            $('.pagination li:first-child').addClass('active')
+            $('.pagination li').on('click', function () {
+                var pageNum = $(this).attr('data-page')
+                var trIndex = 0;
+                $('.pagination li').removeClass('active')
+                $(this).addClass('active')
+                $(table + ' tr:gt(0)').each(function () {
+                    trIndex++
+                    if (trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum) - maxRows)) {
+                        $(this).hide()
+                    } else {
+                        $(this).show()
+                    }
+                })
+            })
+        })
+        $(function () {
+            $('table tr:eq(0)').prepend('<th>ID</th>')
+            var id = 0;
+            $('table tr:gt(0)').each(function () {
+                id++
+                $(this).prepend('<td>' + id + '</td>')
+
+            })
+        })
+
+        $('#StatusCode').change(function () {
+
+            $('#searchadminmelk').click();
+        });
+        $('#divlistAdmin').mouseenter(function () {
+
+            $('#maxRows').val($('#maxRows option:selected').val()).click()
+        });
+
+
+    }
+
+</script>
+

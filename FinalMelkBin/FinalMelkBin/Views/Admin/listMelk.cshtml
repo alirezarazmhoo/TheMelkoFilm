@@ -1,0 +1,294 @@
+﻿@using FinalMelkBin.Models;
+@{
+    ViewBag.Title = "listMelk";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section viewscript{
+
+    <script src="~/Scripts/Melk/TableMelk.js"></script>
+    <script src="~/Scripts/Melk/LoadTheMelk.js"></script>
+}
+@{
+    TheFinalMelkobinEntities _Context = new TheFinalMelkobinEntities();
+    var puser = System.Web.HttpContext.Current.User.Identity.Name;
+
+
+}
+
+<div style="background-color:#1c1616">
+
+
+    <img src="~/Pictures/red_repicthousebase_1484336386-1.png" style="width:100px;height:100%;background-color:white" />
+    <ol class="breadcrumb breadcrumb-2" style="background-color:#1c1616">
+        <li><a href="~/Home/Index" style="color:white"><i class="glyphicon glyphicon-home" style="color:white"></i>خانه</a></li>
+        <li class="active" style="color:white"><strong>املاک</strong></li>
+
+    </ol>
+</div>
+<input type="hidden" id="userInformation" value=" @puser" />
+@*<div id="ProductRegister">
+
+    </div>*@
+
+
+<button type="button" id="sucessModal" class="btn btn-success" data-toggle="modal" data-target="#modal-success" style="visibility:hidden">
+    مدال Success
+</button>
+<div class="modal modal-success " id="modal-success">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"> موفقیت آمیز</h4>
+            </div>
+            <div class="modal-body">
+                <p>اطلاعات آگهی املاک با  موفقیت حذف گردید</p>
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+
+
+
+
+@*PanelMelk*@
+<div class="row" id="divMelkk">
+
+    <div class="col-lg-12 animatedParent animateOnce z-index-50" style="width:100%;">
+
+        <div class="panel panel-default animated fadeInUp" style="border-width:5px;border-color:#2f2a2a;border-style:solid;">
+
+            <div class="panel-body box box-default color-palette-box " style=" background-color:#2f2a2a;">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label style="color:white;"> نمایش رکورد از:</label>
+                            <select name="state" class="form-control" id="maxRows" style="font-size:medium">
+                                <option value="5">5</option>
+                                <option value="50000">همه</option>
+                                <option id="selectFirst" value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="75">75</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" style="color:white;"> جستجو براساس:</label>
+                            <select class="form-control" name="MelkStatusCode" id="MelkStatusCode" style="font-size:medium">
+                                <option value="">همه</option>
+                                <option value="1">تاییدشده ها</option>
+                                <option value="2">در حال انتظار</option>
+                                <option value="3">رد شده</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3 " style="margin-top:auto">
+                        <label for="exampleFormControlInput1" style="color:white;"> توضیحات:</label>
+                        <div class="form-group">
+                            <input type="text" id="Description" placeholder="ملک.." name="search" />
+
+                        </div>
+                    </div>
+                    <div style="margin-top:25px;margin-left:200px;font-size:medium">
+                        <div class="form-group">
+                            <button id="serchmelks" type="submit" onclick="SearchMelk();" class="btn  btn-success btn-flat" style="font-size:medium"><span class="glyphicon glyphicon-search"></span> جستجو</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="divMelk" class="table-responsive" style="height:500px;">
+
+            </div>
+            <div class="pagination-container" style="cursor:pointer">
+                <nav>
+                    <ul class="pagination"></ul>
+                </nav>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="modal fade" id="StatusModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color:darkgray;">
+                <button type="button" class="close" onclick="resetStatusMelkModal();" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style=" color:white;">ثبت وضعیت </h4>
+            </div>
+            @if (User.IsInRole("RegisterMelkAuthorisation") || User.IsInRole("SuperAdmin"))
+            {
+            <div class="modal-body">
+                <label>تایید:</label>
+                <input type="radio" class="btn btn-default" id="melkStatus" name="melkStatus" value="1">
+                <br />
+                <label>در حال انتظار:</label>
+                <input type="radio" class="btn btn-default" id="melkStatus" name="melkStatus" value="2">
+                <br />
+                <label>تایید نشده:</label>
+                <input type="radio" class="btn btn-default" id="melkStatus" name="melkStatus" value="3">
+                <div style="width:50%">
+                    <label>نظرکارشناس:</label>
+                <textarea id="adminComment" cols="20" rows="2">
+
+
+                </textarea>
+                </div>
+
+            </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="resetStatusMelkModal();" data-dismiss="modal">بستن</button>
+                    <button type="button" class="btn btn-success" id="OkStatusButtun" data-dismiss="modal">تایید</button>
+
+
+
+                </div>
+            }
+            @if (!(User.IsInRole("RegisterMelkAuthorisation") || User.IsInRole("SuperAdmin")))
+            {
+
+                <div class="modal-body danger bg-danger">
+                    <p class="text-danger">کاربرگرامی شما به این قسمت دسترسی ندارید!</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="RemoveModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" onclick="resetMelkModal()" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger ">حذف ملک</h4>
+            </div>
+            @if (User.IsInRole("RemoveMelk") || User.IsInRole("SuperAdmin"))
+            {
+                <div class="modal-body">
+                    <p>آیا مایل به ادامه عملیات هستید؟</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="OkButtun" data-dismiss="modal">تایید</button>
+                    <button onclick="resetMelkModal()" type="button" class="btn btn-danger" data-dismiss="modal">انصراف</button>
+                </div>
+            }
+            @if (!(User.IsInRole("RemoveMelk") || User.IsInRole("SuperAdmin")))
+            {
+
+                <div class="modal-body danger bg-danger">
+                    <p class="text-danger">کاربرگرامی شما به این قسمت دسترسی ندارید!</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@*<div style="display:none;margin-top:5px;" id="CitySuuccess" class="alert alert-success">
+        <strong>Success!</strong> مشخصات شهر با موفقیت ثبت گردید!
+        <i class="icon-check"></i>
+    </div>*@
+
+
+
+<script>
+    window.onload = Load;
+    function Load() {
+        $('#MelkStatusCode option').prop('selected', function () {
+            return this.defaultSelected;
+        });
+        //$('#maxRows option').prop('selected', function () {
+        //    return this.defaultSelected;
+        //});
+        LoadMelk();
+
+        var table = '#tableMelk';
+        $('#maxRows').on('click', function () {
+            $('.pagination').html('')
+            var trnum = 0
+            var maxRows = parseInt($(this).val())
+            var totalRows = $(table + ' tbody tr').length
+            $(table + ' tr:gt(0)').each(function () {
+                trnum++
+                if (trnum > maxRows) {
+                    $(this).hide()
+                }
+                if (trnum <= maxRows) {
+                    $(this).show()
+                }
+            })
+            if (totalRows > maxRows) {
+                var pagenum = Math.ceil(totalRows / maxRows)
+                for (var i = 1; i <= pagenum;) {
+                    $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span></span>\</li>').show()
+
+
+                }
+            }
+            $('.pagination li:first-child').addClass('active')
+            $('.pagination li').on('click', function () {
+                var pageNum = $(this).attr('data-page')
+                var trIndex = 0;
+                $('.pagination li').removeClass('active')
+                $(this).addClass('active')
+                $(table + ' tr:gt(0)').each(function () {
+                    trIndex++
+                    if (trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum) - maxRows)) {
+                        $(this).hide()
+                    } else {
+                        $(this).show()
+                    }
+                })
+            })
+        })
+        $(function () {
+            $('table tr:eq(0)').prepend('<th>ID</th>')
+            var id = 0;
+            $('table tr:gt(0)').each(function () {
+                id++
+                $(this).prepend('<td>' + id + '</td>')
+
+            })
+        })
+
+        $('#MelkStatusCode').change(function () {
+
+            $('#serchmelks').click();
+        });
+
+
+        $('#divMelkk').mouseenter(function () {
+
+            $('#maxRows').val($('#maxRows option:selected').val()).click()
+        });
+    }
+
+</script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/js/bootstrap.bundle.js"></script>
+<script src="~/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/bootstrap.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+
+

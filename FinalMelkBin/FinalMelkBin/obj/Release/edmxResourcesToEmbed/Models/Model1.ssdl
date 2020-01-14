@@ -1,0 +1,1004 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="melkofilm_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="buildDate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoriName" Type="nvarchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cityName" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="equipment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+    <Property Name="EquipmentAddress" Type="nvarchar(max)" />
+    <Property Name="price" Type="int" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="lat" Type="float" />
+    <Property Name="lon" Type="float" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="40" />
+    <Property Name="imageUrl" Type="nvarchar" MaxLength="90" />
+    <Property Name="cityId" Type="int" />
+    <Property Name="subCityId" Type="int" />
+    <Property Name="equipmentCategoriId" Type="int" />
+    <Property Name="equipmentSubCategoriId" Type="int" />
+    <Property Name="childEquipmentSubCategoriId" Type="int" />
+    <Property Name="apiToken" Type="nvarchar" MaxLength="100" />
+    <Property Name="pexpireDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" />
+    <Property Name="userType" Type="tinyint" />
+    <Property Name="userId" Type="int" />
+    <Property Name="film" Type="nvarchar" MaxLength="100" />
+    <Property Name="adminComment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="equipmentCategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="namee" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="equipmentPictures">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="url" Type="nvarchar" MaxLength="100" />
+    <Property Name="equipmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="equipmentSubCategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="namee" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="equipmentCategoriId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="equipmetAcceptUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="equipmentId" Type="int" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="statusSelected" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="registerDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="equipmetUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="20" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="20" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="apiToken" Type="nvarchar" MaxLength="100" />
+    <Property Name="abutMe" Type="nvarchar(max)" />
+    <Property Name="userType" Type="tinyint" />
+    <Property Name="userImageUrl" Type="nvarchar" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="lon" Type="float" />
+    <Property Name="lat" Type="float" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobAddress" Type="nvarchar(max)" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="30" />
+    <Property Name="cityId" Type="int" />
+    <Property Name="subCityId" Type="int" />
+    <Property Name="tahsilat" Type="tinyint" />
+    <Property Name="otherMaharat" Type="nvarchar(max)" />
+    <Property Name="sabeghe" Type="nvarchar(max)" />
+    <Property Name="jobCategoriId" Type="int" />
+    <Property Name="jobSubCategoriId" Type="int" />
+    <Property Name="childjobSubCategoriId" Type="int" />
+    <Property Name="sharheVazayef" Type="nvarchar(max)" />
+    <Property Name="vazayefRoozaneVaHaftegiVaMahane" Type="nvarchar(max)" />
+    <Property Name="film" Type="nvarchar" MaxLength="80" />
+    <Property Name="imageUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" />
+    <Property Name="userId" Type="int" />
+    <Property Name="Mablagh" Type="nvarchar" MaxLength="30" />
+    <Property Name="pExpire" Type="nvarchar" MaxLength="50" />
+    <Property Name="apiToken" Type="nvarchar" MaxLength="50" />
+    <Property Name="userType" Type="tinyint" />
+    <Property Name="advertisementType" Type="tinyint" />
+    <Property Name="adminComment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="jobAcceptUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="jobId" Type="int" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="statusSelected" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="registerDate" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobCategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="namee" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobPicture">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="url" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="jobId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobSubCategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="namee" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="jobCategoriId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="40" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="12" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="12" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="apiToken" Type="nvarchar" MaxLength="100" />
+    <Property Name="abutMe" Type="nvarchar(max)" />
+    <Property Name="userType" Type="tinyint" />
+    <Property Name="userImageUrl" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="melk">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+    <Property Name="imageUrl" Type="nvarchar" MaxLength="70" />
+    <Property Name="film" Type="nvarchar(max)" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="11" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="11" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="500" />
+    <Property Name="lon" Type="float" Nullable="false" />
+    <Property Name="lat" Type="float" Nullable="false" />
+    <Property Name="tozihatTakmily" Type="nvarchar(max)" />
+    <Property Name="parking" Type="tinyint" Nullable="false" />
+    <Property Name="isNegahban" Type="bit" Nullable="false" />
+    <Property Name="isSystemGarmayeshiMarkazi" Type="bit" Nullable="false" />
+    <Property Name="isKabinet" Type="bit" Nullable="false" />
+    <Property Name="isHayat" Type="bit" Nullable="false" />
+    <Property Name="isSalonEjtema" Type="bit" Nullable="false" />
+    <Property Name="isLaby" Type="bit" Nullable="false" />
+    <Property Name="isEstakhrVaSona" Type="bit" Nullable="false" />
+    <Property Name="isSalonVarzeshi" Type="bit" Nullable="false" />
+    <Property Name="isPentHouse" Type="bit" Nullable="false" />
+    <Property Name="isFazayeSabz" Type="bit" Nullable="false" />
+    <Property Name="IsDastshooyiFarangi" Type="bit" Nullable="false" />
+    <Property Name="IsMaster" Type="bit" Nullable="false" />
+    <Property Name="vaziyatSokoonat" Type="bit" Nullable="false" />
+    <Property Name="mogheiyatJographiya" Type="tinyint" Nullable="false" />
+    <Property Name="isDarbZedSerghat" Type="bit" Nullable="false" />
+    <Property Name="kafpoosh" Type="tinyint" Nullable="false" />
+    <Property Name="cooler" Type="tinyint" Nullable="false" />
+    <Property Name="garmayeshi" Type="tinyint" Nullable="false" />
+    <Property Name="isIphoneTasviry" Type="bit" Nullable="false" />
+    <Property Name="isAntenMarkazi" Type="bit" Nullable="false" />
+    <Property Name="divar" Type="tinyint" Nullable="false" />
+    <Property Name="saghf" Type="tinyint" Nullable="false" />
+    <Property Name="isKomodDivari" Type="bit" Nullable="false" />
+    <Property Name="isPangerehDojedareh" Type="bit" Nullable="false" />
+    <Property Name="typeDastebandi" Type="tinyint" Nullable="false" />
+    <Property Name="gheymateForoosh" Type="bigint" Nullable="false" />
+    <Property Name="melkType" Type="tinyint" Nullable="false" />
+    <Property Name="sanad" Type="tinyint" Nullable="false" />
+    <Property Name="sanadType" Type="bit" Nullable="false" />
+    <Property Name="typeEskelet" Type="bit" Nullable="false" />
+    <Property Name="zirbana" Type="int" Nullable="false" />
+    <Property Name="tedadTabaghat" Type="int" Nullable="false" />
+    <Property Name="tedadVahedDarTabaghe" Type="int" Nullable="false" />
+    <Property Name="tedadOtaghkhab" Type="int" Nullable="false" />
+    <Property Name="buildDateId" Type="int" />
+    <Property Name="cityId" Type="int" />
+    <Property Name="categoriId" Type="int" />
+    <Property Name="isVip" Type="bit" Nullable="false" />
+    <Property Name="pExpireDate" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="expireDate" Type="datetime" Nullable="false" />
+    <Property Name="statusId" Type="nvarchar" MaxLength="10" />
+    <Property Name="subCityId" Type="int" />
+    <Property Name="subCategoriId" Type="int" />
+    <Property Name="childSubCategoriId" Type="int" />
+    <Property Name="userId" Type="int" />
+    <Property Name="gheymateRahn" Type="bigint" />
+    <Property Name="gheymateEjareh" Type="bigint" />
+    <Property Name="ghabeleTabdilBarayeRahn" Type="bit" />
+    <Property Name="ghabeleTabdilBarayeEjareh" Type="bit" />
+    <Property Name="userType" Type="tinyint" />
+    <Property Name="adminComment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="melkAcceptUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="melkId" Type="int" Nullable="false" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="statusSelected" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="RegisterDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pictures">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="url" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="melkId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="roll">
+    <Key>
+      <PropertyRef Name="rolId" />
+    </Key>
+    <Property Name="rolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubCategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subCategoriName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="categoriId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="subCity">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subCityname" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="cityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="11" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="11" />
+    <Property Name="userName" Type="nvarchar" MaxLength="30" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="apiToken" Type="nvarchar" MaxLength="70" />
+    <Property Name="rolId" Type="int" />
+    <Property Name="abutMe" Type="nvarchar(max)" />
+    <Property Name="userType" Type="tinyint" />
+    <Property Name="userImageUrl" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="AdminUser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="20" />
+    <Property Name="mobile" Type="nvarchar" MaxLength="20" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="apiToken" Type="nvarchar" MaxLength="100" />
+    <Property Name="rolId" Type="int" />
+  </EntityType>
+  <EntityType Name="childjobSubCategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="childJobSubCategoriName" Type="nvarchar" MaxLength="80" />
+    <Property Name="jobSubCategoriId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChildSubCategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="childSubCategoriName" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="subCategoriId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="childSubEquipmentCategori">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="childSubEquipmentCategoriName" Type="nvarchar" MaxLength="80" />
+    <Property Name="equipmentSubCategoriId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RollAdmin">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="100" />
+    <Property Name="RoleDes" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UserRoll">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="RollID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="RollID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_childjobSubCategori_jobSubCategori">
+    <End Role="jobSubCategori" Type="Self.jobSubCategori" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="childjobSubCategori" Type="Self.childjobSubCategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="childjobSubCategori">
+        <PropertyRef Name="jobSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChildSubCategori_SubCategori">
+    <End Role="SubCategori" Type="Self.SubCategori" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ChildSubCategori" Type="Self.ChildSubCategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ChildSubCategori">
+        <PropertyRef Name="subCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_childSubEquipmentCategori_equipmentSubCategori">
+    <End Role="equipmentSubCategori" Type="Self.equipmentSubCategori" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="childSubEquipmentCategori" Type="Self.childSubEquipmentCategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipmentSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="childSubEquipmentCategori">
+        <PropertyRef Name="equipmentSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_childSubEquipmentCategori">
+    <End Role="childSubEquipmentCategori" Type="Self.childSubEquipmentCategori" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="childSubEquipmentCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="childEquipmentSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_city">
+    <End Role="city" Type="Self.city" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_equipmentCategori">
+    <End Role="equipmentCategori" Type="Self.equipmentCategori" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipmentCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="equipmentCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_equipmentSubCategori">
+    <End Role="equipmentSubCategori" Type="Self.equipmentSubCategori" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipmentSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="equipmentSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_equipmetUser">
+    <End Role="equipmetUser" Type="Self.equipmetUser" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipmetUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_subCity">
+    <End Role="subCity" Type="Self.subCity" Multiplicity="0..1" />
+    <End Role="equipment" Type="Self.equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subCity">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="subCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipmentPictures_equipment">
+    <End Role="equipment" Type="Self.equipment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="equipmentPictures" Type="Self.equipmentPictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipmentPictures">
+        <PropertyRef Name="equipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipmentSubCategori_equipmentCategori">
+    <End Role="equipmentCategori" Type="Self.equipmentCategori" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="equipmentSubCategori" Type="Self.equipmentSubCategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipmentCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipmentSubCategori">
+        <PropertyRef Name="equipmentCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipmetAcceptUser_equipment">
+    <End Role="equipment" Type="Self.equipment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="equipmetAcceptUser" Type="Self.equipmetAcceptUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipmetAcceptUser">
+        <PropertyRef Name="equipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_childjobSubCategori">
+    <End Role="childjobSubCategori" Type="Self.childjobSubCategori" Multiplicity="0..1" />
+    <End Role="job" Type="Self.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="childjobSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="childjobSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_city">
+    <End Role="city" Type="Self.city" Multiplicity="0..1" />
+    <End Role="job" Type="Self.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_jobCategori">
+    <End Role="jobCategori" Type="Self.jobCategori" Multiplicity="0..1" />
+    <End Role="job" Type="Self.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="jobCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_jobSubCategori">
+    <End Role="jobSubCategori" Type="Self.jobSubCategori" Multiplicity="0..1" />
+    <End Role="job" Type="Self.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="jobSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_jobUser1">
+    <End Role="jobUser" Type="Self.jobUser" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="job" Type="Self.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_subCity">
+    <End Role="subCity" Type="Self.subCity" Multiplicity="0..1" />
+    <End Role="job" Type="Self.job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subCity">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="subCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jobAcceptUser_job">
+    <End Role="job" Type="Self.job" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="jobAcceptUser" Type="Self.jobAcceptUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="job">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="jobAcceptUser">
+        <PropertyRef Name="jobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jobPicture_job">
+    <End Role="job" Type="Self.job" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="jobPicture" Type="Self.jobPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="job">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="jobPicture">
+        <PropertyRef Name="jobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jobSubCategori_jobCategori">
+    <End Role="jobCategori" Type="Self.jobCategori" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="jobSubCategori" Type="Self.jobSubCategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="jobSubCategori">
+        <PropertyRef Name="jobCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_melk_buildDate">
+    <End Role="buildDate" Type="Self.buildDate" Multiplicity="0..1" />
+    <End Role="melk" Type="Self.melk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="buildDate">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="melk">
+        <PropertyRef Name="buildDateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_melk_Categori">
+    <End Role="Categori" Type="Self.Categori" Multiplicity="0..1" />
+    <End Role="melk" Type="Self.melk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="melk">
+        <PropertyRef Name="categoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_melk_ChildSubCategori">
+    <End Role="ChildSubCategori" Type="Self.ChildSubCategori" Multiplicity="0..1" />
+    <End Role="melk" Type="Self.melk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChildSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="melk">
+        <PropertyRef Name="childSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_melk_city">
+    <End Role="city" Type="Self.city" Multiplicity="0..1" />
+    <End Role="melk" Type="Self.melk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="melk">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_melk_SubCategori">
+    <End Role="SubCategori" Type="Self.SubCategori" Multiplicity="0..1" />
+    <End Role="melk" Type="Self.melk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="melk">
+        <PropertyRef Name="subCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_melk_subCity">
+    <End Role="subCity" Type="Self.subCity" Multiplicity="0..1" />
+    <End Role="melk" Type="Self.melk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subCity">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="melk">
+        <PropertyRef Name="subCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_melk_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="melk" Type="Self.melk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="melk">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_melkAcceptUser_melk">
+    <End Role="melk" Type="Self.melk" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="melkAcceptUser" Type="Self.melkAcceptUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="melk">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="melkAcceptUser">
+        <PropertyRef Name="melkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pictures_melk">
+    <End Role="melk" Type="Self.melk" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="pictures" Type="Self.pictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="melk">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pictures">
+        <PropertyRef Name="melkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RollAdmin_RollAdmin">
+    <End Role="RollAdmin" Type="Self.RollAdmin" Multiplicity="1" />
+    <End Role="RollAdmin1" Type="Self.RollAdmin" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="RollAdmin">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="RollAdmin1">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategori_Categori">
+    <End Role="Categori" Type="Self.Categori" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SubCategori" Type="Self.SubCategori" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="SubCategori">
+        <PropertyRef Name="categoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subCity_city">
+    <End Role="city" Type="Self.city" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="subCity" Type="Self.subCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="subCity">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_roll">
+    <End Role="roll" Type="Self.roll" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roll">
+        <PropertyRef Name="rolId" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="rolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoll_AdminUser">
+    <End Role="AdminUser" Type="Self.AdminUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserRoll" Type="Self.UserRoll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserRoll">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoll_RollAdmin">
+    <End Role="RollAdmin" Type="Self.RollAdmin" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserRoll" Type="Self.UserRoll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RollAdmin">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserRoll">
+        <PropertyRef Name="RollID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="melkofilm_dbModelStoreContainer">
+    <EntitySet Name="buildDate" EntityType="Self.buildDate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categori" EntityType="Self.Categori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipment" EntityType="Self.equipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipmentCategori" EntityType="Self.equipmentCategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipmentPictures" EntityType="Self.equipmentPictures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipmentSubCategori" EntityType="Self.equipmentSubCategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipmetAcceptUser" EntityType="Self.equipmetAcceptUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="equipmetUser" EntityType="Self.equipmetUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="job" EntityType="Self.job" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobAcceptUser" EntityType="Self.jobAcceptUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobCategori" EntityType="Self.jobCategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobPicture" EntityType="Self.jobPicture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobSubCategori" EntityType="Self.jobSubCategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobUser" EntityType="Self.jobUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="melk" EntityType="Self.melk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="melkAcceptUser" EntityType="Self.melkAcceptUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pictures" EntityType="Self.pictures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roll" EntityType="Self.roll" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCategori" EntityType="Self.SubCategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subCity" EntityType="Self.subCity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="melkofilm_db" store:Type="Tables" />
+    <EntitySet Name="childjobSubCategori" EntityType="Self.childjobSubCategori" Schema="melkofilm_db" store:Type="Tables" />
+    <EntitySet Name="ChildSubCategori" EntityType="Self.ChildSubCategori" Schema="melkofilm_db" store:Type="Tables" />
+    <EntitySet Name="childSubEquipmentCategori" EntityType="Self.childSubEquipmentCategori" Schema="melkofilm_db" store:Type="Tables" />
+    <EntitySet Name="RollAdmin" EntityType="Self.RollAdmin" Schema="melkofilm_db" store:Type="Tables" />
+    <EntitySet Name="UserRoll" EntityType="Self.UserRoll" Schema="melkofilm_db" store:Type="Tables" />
+    <AssociationSet Name="FK_childjobSubCategori_jobSubCategori" Association="Self.FK_childjobSubCategori_jobSubCategori">
+      <End Role="jobSubCategori" EntitySet="jobSubCategori" />
+      <End Role="childjobSubCategori" EntitySet="childjobSubCategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChildSubCategori_SubCategori" Association="Self.FK_ChildSubCategori_SubCategori">
+      <End Role="SubCategori" EntitySet="SubCategori" />
+      <End Role="ChildSubCategori" EntitySet="ChildSubCategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_childSubEquipmentCategori_equipmentSubCategori" Association="Self.FK_childSubEquipmentCategori_equipmentSubCategori">
+      <End Role="equipmentSubCategori" EntitySet="equipmentSubCategori" />
+      <End Role="childSubEquipmentCategori" EntitySet="childSubEquipmentCategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_childSubEquipmentCategori" Association="Self.FK_equipment_childSubEquipmentCategori">
+      <End Role="childSubEquipmentCategori" EntitySet="childSubEquipmentCategori" />
+      <End Role="equipment" EntitySet="equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_city" Association="Self.FK_equipment_city">
+      <End Role="city" EntitySet="city" />
+      <End Role="equipment" EntitySet="equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_equipmentCategori" Association="Self.FK_equipment_equipmentCategori">
+      <End Role="equipmentCategori" EntitySet="equipmentCategori" />
+      <End Role="equipment" EntitySet="equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_equipmentSubCategori" Association="Self.FK_equipment_equipmentSubCategori">
+      <End Role="equipmentSubCategori" EntitySet="equipmentSubCategori" />
+      <End Role="equipment" EntitySet="equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_equipmetUser" Association="Self.FK_equipment_equipmetUser">
+      <End Role="equipmetUser" EntitySet="equipmetUser" />
+      <End Role="equipment" EntitySet="equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_subCity" Association="Self.FK_equipment_subCity">
+      <End Role="subCity" EntitySet="subCity" />
+      <End Role="equipment" EntitySet="equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipmentPictures_equipment" Association="Self.FK_equipmentPictures_equipment">
+      <End Role="equipment" EntitySet="equipment" />
+      <End Role="equipmentPictures" EntitySet="equipmentPictures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipmentSubCategori_equipmentCategori" Association="Self.FK_equipmentSubCategori_equipmentCategori">
+      <End Role="equipmentCategori" EntitySet="equipmentCategori" />
+      <End Role="equipmentSubCategori" EntitySet="equipmentSubCategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipmetAcceptUser_equipment" Association="Self.FK_equipmetAcceptUser_equipment">
+      <End Role="equipment" EntitySet="equipment" />
+      <End Role="equipmetAcceptUser" EntitySet="equipmetAcceptUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_childjobSubCategori" Association="Self.FK_job_childjobSubCategori">
+      <End Role="childjobSubCategori" EntitySet="childjobSubCategori" />
+      <End Role="job" EntitySet="job" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_city" Association="Self.FK_job_city">
+      <End Role="city" EntitySet="city" />
+      <End Role="job" EntitySet="job" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_jobCategori" Association="Self.FK_job_jobCategori">
+      <End Role="jobCategori" EntitySet="jobCategori" />
+      <End Role="job" EntitySet="job" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_jobSubCategori" Association="Self.FK_job_jobSubCategori">
+      <End Role="jobSubCategori" EntitySet="jobSubCategori" />
+      <End Role="job" EntitySet="job" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_jobUser1" Association="Self.FK_job_jobUser1">
+      <End Role="jobUser" EntitySet="jobUser" />
+      <End Role="job" EntitySet="job" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_subCity" Association="Self.FK_job_subCity">
+      <End Role="subCity" EntitySet="subCity" />
+      <End Role="job" EntitySet="job" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jobAcceptUser_job" Association="Self.FK_jobAcceptUser_job">
+      <End Role="job" EntitySet="job" />
+      <End Role="jobAcceptUser" EntitySet="jobAcceptUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jobPicture_job" Association="Self.FK_jobPicture_job">
+      <End Role="job" EntitySet="job" />
+      <End Role="jobPicture" EntitySet="jobPicture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jobSubCategori_jobCategori" Association="Self.FK_jobSubCategori_jobCategori">
+      <End Role="jobCategori" EntitySet="jobCategori" />
+      <End Role="jobSubCategori" EntitySet="jobSubCategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_melk_buildDate" Association="Self.FK_melk_buildDate">
+      <End Role="buildDate" EntitySet="buildDate" />
+      <End Role="melk" EntitySet="melk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_melk_Categori" Association="Self.FK_melk_Categori">
+      <End Role="Categori" EntitySet="Categori" />
+      <End Role="melk" EntitySet="melk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_melk_ChildSubCategori" Association="Self.FK_melk_ChildSubCategori">
+      <End Role="ChildSubCategori" EntitySet="ChildSubCategori" />
+      <End Role="melk" EntitySet="melk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_melk_city" Association="Self.FK_melk_city">
+      <End Role="city" EntitySet="city" />
+      <End Role="melk" EntitySet="melk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_melk_SubCategori" Association="Self.FK_melk_SubCategori">
+      <End Role="SubCategori" EntitySet="SubCategori" />
+      <End Role="melk" EntitySet="melk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_melk_subCity" Association="Self.FK_melk_subCity">
+      <End Role="subCity" EntitySet="subCity" />
+      <End Role="melk" EntitySet="melk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_melk_user" Association="Self.FK_melk_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="melk" EntitySet="melk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_melkAcceptUser_melk" Association="Self.FK_melkAcceptUser_melk">
+      <End Role="melk" EntitySet="melk" />
+      <End Role="melkAcceptUser" EntitySet="melkAcceptUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pictures_melk" Association="Self.FK_pictures_melk">
+      <End Role="melk" EntitySet="melk" />
+      <End Role="pictures" EntitySet="pictures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RollAdmin_RollAdmin" Association="Self.FK_RollAdmin_RollAdmin">
+      <End Role="RollAdmin" EntitySet="RollAdmin" />
+      <End Role="RollAdmin1" EntitySet="RollAdmin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategori_Categori" Association="Self.FK_SubCategori_Categori">
+      <End Role="Categori" EntitySet="Categori" />
+      <End Role="SubCategori" EntitySet="SubCategori" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subCity_city" Association="Self.FK_subCity_city">
+      <End Role="city" EntitySet="city" />
+      <End Role="subCity" EntitySet="subCity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_roll" Association="Self.FK_user_roll">
+      <End Role="roll" EntitySet="roll" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoll_AdminUser" Association="Self.FK_UserRoll_AdminUser">
+      <End Role="AdminUser" EntitySet="AdminUser" />
+      <End Role="UserRoll" EntitySet="UserRoll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoll_RollAdmin" Association="Self.FK_UserRoll_RollAdmin">
+      <End Role="RollAdmin" EntitySet="RollAdmin" />
+      <End Role="UserRoll" EntitySet="UserRoll" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

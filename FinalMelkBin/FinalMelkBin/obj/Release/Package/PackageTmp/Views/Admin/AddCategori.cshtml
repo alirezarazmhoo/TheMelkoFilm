@@ -1,0 +1,379 @@
+﻿
+@{
+    ViewBag.Title = "AddCategori";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section viewscript{
+    <script src="~/Scripts/Categori/CategoriManager.js"></script>
+    <script src="~/Scripts/Categori/LoadCategori.js"></script>
+    <script src="~/Scripts/Categori/TabaleCity.js"></script>
+    <script src="~/Scripts/Common.Validation.js"></script>
+    <script src="~/Scripts/MessageMoalds/MessageModals.js"></script>
+}
+@if (@ViewBag.Error != null)
+{
+
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Error");
+        }
+    </script>
+}
+
+
+
+<button type="button" id="errorRemove" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger" style="visibility:hidden">
+    مدال Danger
+</button>
+<div class="modal modal-danger fade" id="modal-danger">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">خطا در حذف دسته بندی </h4>
+            </div>
+            <div class="modal-body">
+                <p>به دلیل اینکه اطلاعات این دسته توسط مشتریان در آگهی های املاک استفاده شده است، امکان حذف آن وجود ندارد!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="CloseErrorModal" class="btn btn-outline pull-left" data-dismiss="modal">بستن</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<button type="button" id="errorCityRepat" class="btn btn-danger" data-toggle="modal" data-target="#modal-dangerCity" style="visibility:hidden"></button>
+
+
+<div class="modal modal-danger fade" id="modal-dangerCity">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">خطا در ثبت دسته بندی استان</h4>
+            </div>
+            <div class="modal-body" style="font-size:medium">
+                <p>ثبت انجام نشد!نام دسته بندی تکراری است</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">بستن</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button type="button" id="sucessModal" class="btn btn-success" data-toggle="modal" data-target="#modal-success" style="visibility:hidden">
+    مدال Success
+</button>
+
+
+<div style="background-color:#1c1616">
+
+    <img src="~/Pictures/2518067-84.png" style="width:100px;height:100%;background-color:white" />
+    <ol class="breadcrumb breadcrumb-2" style="background-color:#1c1616">
+        <li><a href="~/Home/Index" style="color:white"><i class="glyphicon glyphicon-home" style="color:white"></i>خانه</a></li>
+        <li class="active" style="color:white"><strong>مدیریت دسته ها</strong></li>
+    </ol>
+
+</div>
+<button type="button" id="sucessModal" class="btn btn-success" data-toggle="modal" data-target="#modal-success" style="visibility:hidden">
+    مدال Success
+</button>
+<div class="modal modal-success " id="modal-success">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"> موفقیت آمیز</h4>
+            </div>
+            <div class="modal-body">
+                <p>اطلاعات دسته بندی املاک با موفقیت حذف گردید</p>
+            </div>
+            <div class="modal-footer">
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@*<div id="ProductRegister">
+
+    </div>*@
+
+
+<div class="row" id="divCategorii">
+
+    <div class="col-lg-12 animatedParent animateOnce z-index-50" style="width:100%;">
+        <div class="panel panel-default animated fadeInUp" style="border-width:5px;border-color:#2f2a2a;border-style:solid;">
+
+            <div class="panel-body box box-default color-palette-box " style=" background-color:#2f2a2a;">
+                @if (User.IsInRole("AddMelkCategori") || User.IsInRole("SuperAdmin"))
+                {
+                    <button id="btnRegister" type="button" class="btn margin btn-block " data-toggle="modal" data-target="#CategoriModal" style="margin:auto;background-color:white"><i class="fa fa-save " style="font-size:large">ثبت جدید</i></button>
+                }
+                <div class="row" style="height:80px;background-color:#2f2a2a;width:100%;margin-top:5px">
+                    <div class="col-sm-3">
+                        <label style="margin-right:30px;color:white;"> نمایش رکورد از:</label><select name="state" class="form-control" id="maxRows" style="width:150px;margin-right:30px;color:brown">
+                            <option value="10">10</option>
+                            <option value="5">5</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                            <option value="50000">همه</option>
+                        </select>
+
+
+                    </div>
+
+                    <div style="margin-top:25px">
+                        <button type="submit" onclick="SearchCity();" class="btn  btn-success btn-flat" style="margin-right:10px;"><span class="glyphicon glyphicon-search"></span> جستجو</button>
+                        <input type="text" class="w3-input" style="width:20%;margin-right:10px;height:30px" id="Description" placeholder="دسته بندی.." name="search">
+                    </div>
+                </div>
+            </div>
+
+            <div id="divCategori" class="table-responsive" style="height:500px;">
+
+            </div>
+            <div class="pagination-container" style="margin-right:10px;cursor:pointer">
+                <nav>
+                    <ul class="pagination"></ul>
+                </nav>
+
+
+            </div>
+
+        </div>
+    </div>
+    @*<div class="dataTables_paginate paging_simple_numbers" id="data-table_paginate"><a class="paginate_button previous disabled" aria-controls="data-table" data-dt-idx="0" tabindex="0" id="data-table_previous">Previous</a><span><a class="paginate_button current" aria-controls="data-table" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="2" tabindex="0">2</a></span><a class="paginate_button next" aria-controls="data-table" data-dt-idx="3" tabindex="0" id="data-table_next">Next</a></div>*@
+</div>
+
+
+@*<div id="divCategorii">
+        <div class="panel panel-default animated fadeInUp" style="border-width:5px;border-color:#2f2a2a;border-style:solid;">
+            <div class="col-lg-12 animatedParent animateOnce z-index-50">
+
+                <button id="btnRegister" type="button" onclick="ProductRegisterform.reset()" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#CategoriModal">ثبت جدید</button>
+
+                <div class="panel-body">
+                    <div class="row" style="height:80px;background-color:white;width:100%">
+
+                        <label style="margin-right:10px;color:crimson"> نمایش رکورد از:</label><select name="state" class="form-control" id="maxRows" style="width:150px;margin-right:10px;color:brown">
+                            <option id="selectFirst" value="10">10</option>
+                            <option value="5">5</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                            <option value="50000">همه</option>
+                        </select>
+
+                    </div>
+
+                    <button type="submit" onclick="SearchCity();" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-search"></span> جستجو</button>
+                    <input type="text" class="w3-input" id="Description" placeholder="دسته بندی.." name="search">
+                    <div id="divCategori" class="table-responsive">
+
+                    </div>
+                    <div class="pagination-container" style="margin-right:10px;cursor:pointer">
+                        <nav>
+                            <ul class="pagination"></ul>
+                        </nav>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<div style="display:none;margin-top:5px;" id="CategoriSuuccess" class="alert alert-success">
+    <strong>موفقیت آمیز!</strong> مشخصات دسته بندی با موفقیت ثبت گردید!
+    <i class="icon-check"></i>
+</div>
+
+<div class="modal fade" id="CategoriModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:forestgreen">
+
+                <h4 class="modal-title" style="color:white">ثبت  دسته ها </h4>
+
+            </div>
+            <form id="FormRegisterCategori">
+                @if (User.IsInRole("AddMelkCategori") || User.IsInRole("SuperAdmin"))
+                {
+                    <div class="modal-body">
+                        <input type="hidden" id="ID" />
+                        <label>عنوان:</label>
+                        <input type="text" data-display="دسته بندی" data-remote="CheckCategori" name="Categori" id="Categori" class="form-control" placeholder="نام دسته بندی را وارد کنید" />
+
+                        <div style="display:none;margin-top:5px;" id="Categoriempty" class="alert alert-danger">
+                            <strong>خطا!</strong>  نام دسته ها خالی یا تکراری است
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" onclick="CategoriRegister()" class="btn btn-primary">ثبت</button>
+                        <button type="button" id="CloseModal" onclick="resetmodal()" class="btn btn-danger" data-dismiss="modal">بستن</button>
+                    </div>
+                }
+                @if (!(User.IsInRole("AddMelkCategori") || User.IsInRole("SuperAdmin")))
+                {
+
+                    <div class="modal-body danger bg-danger">
+                        <p class="text-danger">کاربرگرامی شما به این قسمت دسترسی ندارید!</p>
+                    </div>
+                }
+                <div class="text-center">
+
+                    <label class=" text-danger" id="ValidCategori"></label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="RemoveModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" onclick="ResetRemoveModalCategori()" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger ">حذف دسته بندی</h4>
+            </div>
+            @if (User.IsInRole("RemoveMelkCategori") || User.IsInRole("SuperAdmin"))
+            {
+                <div class="modal-body">
+                    <p>آیا مطمعن به ادامه عملیات هستید؟</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="OkButtun" data-dismiss="modal">تایید</button>
+                    <button type="button" onclick="ResetRemoveModalCategori()" class="btn btn-danger" data-dismiss="modal">انصراف</button>
+                </div>
+            }
+            @if (!(User.IsInRole("RemoveMelkCategori") || User.IsInRole("SuperAdmin")))
+            {
+
+                <div class="modal-body danger bg-danger">
+                    <p class="text-danger">کاربرگرامی شما به این قسمت دسترسی ندارید!</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = Load;
+    function Load() {
+        SetValidation(FormRegisterCategori);
+        //$('#maxRows option').prop('selected', function () {
+        //    return this.defaultSelected;
+        //});
+        LoadTheCategories();
+
+        var table = '#tableCategori';
+        $('#maxRows').on('click', function () {
+            $('.pagination').html('')
+            var trnum = 0
+            var maxRows = parseInt($(this).val())
+            var totalRows = $(table + ' tbody tr').length
+            $(table + ' tr:gt(0)').each(function () {
+                trnum++
+                if (trnum > maxRows) {
+                    $(this).hide()
+                }
+                if (trnum <= maxRows) {
+                    $(this).show()
+                }
+            })
+            if (totalRows > maxRows) {
+                var pagenum = Math.ceil(totalRows / maxRows)
+                for (var i = 1; i <= pagenum;) {
+                    $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span></span>\</li>').show()
+
+
+                }
+            }
+            $('.pagination li:first-child').addClass('active')
+            $('.pagination li').on('click', function () {
+                var pageNum = $(this).attr('data-page')
+                var trIndex = 0;
+                $('.pagination li').removeClass('active')
+                $(this).addClass('active')
+                $(table + ' tr:gt(0)').each(function () {
+                    trIndex++
+                    if (trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum) - maxRows)) {
+                        $(this).hide()
+                    } else {
+                        $(this).show()
+                    }
+                })
+            })
+        })
+
+        $(function () {
+            $('table tr:eq(0)').prepend('<th>ID</th>')
+
+            var id = 0;
+            $('table tr:gt(0)').each(function () {
+                id++
+                $(this).prepend('<td>' + id + '</td>')
+
+            })
+
+        })
+        $('#divCategorii').mouseenter(function () {
+
+            $('#maxRows').val($('#maxRows option:selected').val()).click().off()
+        });
+    }
+    function resetmodal() {
+        $('#CategoriModal').on('hidden.bs.modal', function (e) {
+            $(this).find("input").val('').end()
+
+
+        });
+    }
+</script>
+

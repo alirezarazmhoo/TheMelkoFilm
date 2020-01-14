@@ -1,0 +1,371 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ملکوفیلم</title>
+    <link href="~/vendors/bower_components/bootstrap-theme.css" rel="stylesheet" />
+    <!-- Bootstrap rtl -->
+    <link href="~/vendors/bower_components/rtl.css" rel="stylesheet" />
+    <!-- persian Date Picker -->
+    <!-- Font Awesome -->
+    <link href="~/vendors/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link href="~/vendors/bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/vendors/bower_components/AdminLTE.css" rel="stylesheet" />
+    <link href="~/vendors/bower_components/_all-skins.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">*@
+
+  
+
+    @RenderSection("header", false)
+</head>
+<body class="hold-transition skin-blue sidebar-mini box-body" style="font-size: medium;">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini">پنل</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>پنل مدیریت</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-user"></i>
+                               
+                                <span class="hidden-xs">@User.Identity.Name  خوش آمدید</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <i style="font-size: 40px" class="fa fa-user"></i>
+
+                                    <p>
+                                        پنل مدیریتی ملکوفیلم
+                                        <small>مدیریت کل سایت</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+
+                                    <div class="pull-left">
+
+                                        <a type="submit" href="~/Admin/logOut" class="btn btn-default btn-flat">خروج</a>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- right side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-right image">
+                        <i style="font-size: 40px;color:white" class="fa fa-user"></i>
+                    </div>
+                    <div class="pull-right info">
+                        <p>@User.Identity.Name</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> آنلاین</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">منو</li>
+
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            <span> اطلاعات پایه</span>
+
+                            <span class="pull-left-container">
+                                <i class="fa fa-angle-right pull-left"></i>
+                            </span>
+
+                        </a>
+
+                        <ul class="treeview-menu">
+                            @if (User.IsInRole("ShowCity") || User.IsInRole("SuperAdmin"))
+                            {
+
+                                <li><a href="~/Admin/AddCity"><i class="fa fa-circle-o"></i>استان</a></li>
+                            }
+
+                            @if (User.IsInRole("ShowSubCity") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/AddSubCity"><i class="fa fa-circle-o"></i>شهرستان</a></li>
+
+                            }
+
+
+                        </ul>
+
+
+
+
+                    </li>
+
+                    <li class="treeview">
+
+                        <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            <span>املاک</span>
+                            <span class="pull-left-container">
+                                <i class="fa fa-angle-right pull-left"></i>
+                            </span>
+                        </a>
+
+
+                        @*<a href="#"><i class="fa fa-angle-right pull-left"></i><span> املاک</span></a>
+            <span class="pull-left-container">
+                <i class="fa fa-angle-right pull-left"></i>
+            </span>*@
+                        <ul class="treeview-menu">
+                            @if (User.IsInRole("ShowListMelk") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/listMelk"><i class="fa fa-circle-o"></i>لیست ملک ها</a></li>
+                            }
+                            @if (User.IsInRole("ShowMelkCategori") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/AddCategori"><i class="fa fa-circle-o"></i>دسته ها</a></li>
+                            }
+                            @if (User.IsInRole("ShowMelkSubCategori") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/AddSubCategori"><i class="fa fa-circle-o"></i>زیردسته اول</a></li>
+                            }
+
+
+                            @if (User.IsInRole("ShowMelkChildSubCategori") || User.IsInRole("SuperAdmin"))
+                            {
+
+                                <li><a href="~/Admin/AddChildSubCategori"><i class="fa fa-circle-o"></i>زیردسته دوم</a></li>
+                            }
+                            @if (User.IsInRole("ShowDateMelk") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/ListDate"><i class="fa fa-circle-o"></i>مدیریت سال ساخت</a></li>
+                            }
+                        </ul>
+                        @*<ul class="treeview-menu" style="display: block;">
+
+            </ul>*@
+
+
+                    </li>
+
+                    <li class="treeview ">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            <span> مشاغل</span>
+                            <span class="pull-left-container">
+                                <i class="fa fa-angle-right pull-left"></i>
+                            </span>
+                        </a>
+
+                        <ul class="treeview-menu">
+                            @if (User.IsInRole("ShowListJob") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/listJobs"><i class="fa fa-circle-o"></i> لیست شغل ها</a></li>
+                            }
+                            @if (User.IsInRole("ShowJobCategori") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/JobCategori"><i class="fa fa-circle-o"></i>مدیریت دسته مشاغل</a></li>
+                            }
+                            @if (User.IsInRole("ShowJobSubCategori") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/JobSubCategori"><i class="fa fa-circle-o"></i>مدیریت زیر دسته اول مشاغل</a></li>
+                            }
+                            @if (User.IsInRole("ShowJobChildSubCategori") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/JobChildSubCategori"><i class="fa fa-circle-o"></i>مدیریت زیر دسته دوم مشاغل</a></li>
+                            }
+                        </ul>
+
+
+
+                        @*<ul class="treeview-menu" style="display: block;">
+
+
+            </ul>
+            <ul class="treeview-menu" style="display: block;">
+
+
+            </ul>*@
+
+                    </li>
+                    @if (User.IsInRole("ShowEquipment") || User.IsInRole("SuperAdmin"))
+                    {
+                    <li class="treeview ">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-scissors"></i><span> لوازم دسته دوم</span> <span class="pull-left-container">
+                                <i class="fa fa-angle-right pull-left"></i>
+                            </span>
+                        </a>
+
+                        <ul class="treeview-menu">
+                            @if (User.IsInRole("ShowEquipment") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/listEquipments"><i class="fa fa-circle-o"></i>لیست  لوازم</a></li>
+                            }
+                            @if (User.IsInRole("ShowEquipmentCategori") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/equipmentCategori"><i class="fa fa-circle-o"></i>مدیریت گروه بندی لوازم</a></li>
+                            }
+                            @if (User.IsInRole("ShowSubEquipmentCategori") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/equipmentSubCategori"><i class="fa fa-circle-o"></i>مدیریت زیر گروه اول لوازم</a></li>
+                            }
+                            @if (User.IsInRole("ShowEquipmentChildSubCategori") || User.IsInRole("SuperAdmin"))
+                            {
+                                <li><a href="~/Admin/equipmentChildSubCategori"><i class="fa fa-circle-o"></i>مدیریت زیر گروه دوم لوازم</a></li>
+                            }
+                            </ul>
+                        
+
+
+                    </li>
+                        }
+                        @if (User.IsInRole("SuperAdmin"))
+                        {
+                            <li class="treeview ">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-user"></i><span> ادمین ها</span>
+                                    <span class="pull-left-container">
+                                        <i class="fa fa-angle-right pull-left"></i>
+                                    </span>
+                                </a>
+
+                                <ul class="treeview-menu">
+                                    <li><a href="~/Admin/listAdmin"><i class="fa fa-circle-o"></i>فعالت ادمین در خصوص املاک</a></li>
+
+                                    <li><a href="~/Admin/LstJobActivityAdmin"><i class="fa fa-circle-o"></i>فعالت ادمین در خصوص مشاغل</a></li>
+                                    <li><a href="~/Admin/LstEquipmentActivityAdmin"><i class="fa fa-circle-o"></i>فعالیت ادمین در لوازم دسته دوم</a></li>
+                                </ul>
+
+                            </li>
+                            <li class="treeview ">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-tasks"></i><span> مدیریت کاربران</span>
+                                    <span class="pull-left-container">
+                                        <i class="fa fa-angle-right pull-left"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="~/Admin/AdminUser"><i class="fa fa-circle-o"></i>اسامی و مدیریت</a></li>
+
+                                </ul>
+
+                            </li>
+                        }
+
+
+
+
+
+
+                        <li>
+
+                            <a style="cursor:pointer" href="~/Admin/logOut">
+
+                                <i class="fa fa-sign-out"></i><span>خروج</span>
+
+                            </a>
+                        </li>
+
+                    </ul>
+
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper box-body " id="mypaging">
+            <!-- Content Header (Page header) -->
+            @*<section class="content-header">
+                    @RenderSection("headerContent", false)
+                </section>*@
+            <!-- Main content -->
+            <section class="content box-body">
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+            <!-- /.content-wrapper -->
+            @*<footer class="main-footer text-left"></footer>*@
+        </div>
+
+    </div>
+
+
+    @*<script src="~/js/app.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- jQuery 3 -->
+    <script src="~/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/vendors/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="~/vendors/bower_components/raphael/raphael.min.js"></script>
+    <script src="~/vendors/bower_components/morris.js/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/vendors/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    @*<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>*@
+    <!-- jQuery Knob Chart -->
+    @*<script src="bower_components/jquery-knob/dist/jquery.knob.min.js"></script>*@
+    <!-- daterangepicker -->
+    @*<script src="bower_components/moment/min/moment.min.js"></script>*@
+    @*<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>*@
+    <!-- datepicker -->
+    @*<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>*@
+    <!-- Bootstrap WYSIHTML5 -->
+    @*<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>*@
+    <!-- Slimscroll -->
+    <script src="~/vendors/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/vendors/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/vendors/bower_components/adminlte.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @*<script src="dist/js/pages/dashboard.js"></script>*@
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="dist/js/demo.js"></script>*@
+
+
+    <script src="~/Scripts/Common.js"></script>
+
+
+    @*AdminLayOut*@
+
+
+
+
+    @RenderSection("viewscript", false)
+</body>
+</html>

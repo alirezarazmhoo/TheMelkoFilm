@@ -1,0 +1,418 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="~/Scripts/Common.js"></script>
+    <meta name="enamad" content="366120" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Mouldifi - A fully responsive, HTML5 based admin theme">
+    <meta name="keywords" content="Responsive, HTML5, admin theme, business, professional, Mouldifi, web design, CSS3">
+    <title>melkofilm </title>
+
+
+
+    <link rel="stylesheet" href="~/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/vendors/bower_components/animate.css/animate.min.css">
+    <link rel="stylesheet" href="~/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
+
+
+    @*AdminLayout*@
+
+    @*<link rel='shortcut icon' type='image/x-icon' href='~/Images/favicon.ico' />*@
+
+    <link href="~/css/entypo.css" rel="stylesheet">
+
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/css/plugins/css3-animate-it-plugin/animations.css" rel="stylesheet">
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/plugins/chartist/chartist.min.css" rel="stylesheet">
+    <link href="~/css/mouldifi-core.css" rel="stylesheet">
+
+
+    <link href="~/css/mouldifi-forms.css" rel="stylesheet">
+    <link href="~/css/plugins/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="~/js/plugins/datatables/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet">
+
+    <link href="~/css/bootstrap-rtl.min.css" rel="stylesheet">
+
+    <link href="~/css/mouldifi-rtl-core.css" rel="stylesheet">
+    <link href="~/css/Index.css" rel="stylesheet" />
+
+    <script src="~/js/app.min.js"></script>
+
+
+    <link href="~/css/Admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/Admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/Admin/bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+
+    <div class="page-container">
+        @*@if (User.Identity.IsAuthenticated)
+            {*@
+
+        <div class="page-sidebar">
+
+            <header class="site-header">
+
+
+
+                <div class="site-logo"><a href="~/Home/Index"><img alt="Home" title="melkobin"></a></div>
+                <div class="sidebar-collapse hidden-xs"><a class="sidebar-collapse-icon" href="#"><i class="icon-menu"></i></a></div>
+                <div class="sidebar-mobile-menu visible-xs"><a data-target="#side-nav" data-toggle="collapse" class="mobile-menu-icon" href="#"><i class="icon-menu"></i></a></div>
+            </header>
+            @*@if (User.Identity.IsAuthenticated)
+                {*@
+            <ul id="side-nav" class="main-menu navbar-collapse collapse">
+                @if (User.Identity.IsAuthenticated)
+                {
+
+                    @*<li>
+                            <a href="~/ProductKind/InfoProductKind"><i class="icon-newspaper"></i><span class="title"> دسته بندی محصولات</span></a>
+                            <ul class="nav collapse">
+
+                                <li><a href="~/Product/ShowProduct"><span class="title">مشاهده محصولات</span></a></li>
+                            </ul>
+                        </li>*@
+                    <li>
+                        <a href="#"><i class="icon-doc-text"></i><span> اطلاعات پایه</span></a>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/AddCity"><span class="title">استان</span></a></li>
+                            <li><a href="~/Admin/AddSubCity"><span class="title">شهرستان</span></a></li>
+                        </ul>
+
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/ListDate"><span class="title">مدیریت تاریخ</span></a></li>
+
+                        </ul>
+
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-doc-text"></i><span> املاک</span></a>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/listMelk"><span class="title">لیست ملک ها</span></a></li>
+
+                        </ul>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/AddCategori"><span class="title">دسته ها</span></a></li>
+                            <li><a href="~/Admin/AddSubCategori"><span class="title">زیردسته ها</span></a></li>
+                        </ul>
+
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-doc-text"></i><span> مشاغل</span></a>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/listJobs"><span class="title">لیست شغل ها</span></a></li>
+
+                        </ul>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/JobCategori"><span class="title">مدیریت دسته شغلی</span></a></li>
+
+                        </ul>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/JobSubCategori"><span class="title">مدیریت زیر دسته شغلی</span></a></li>
+
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-doc-text"></i><span> لوازم دسته دوم</span></a>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/listEquipments"><span class="title">لیست  لوازم</span></a></li>
+
+                        </ul>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/equipmentCategori"><span class="title">مدیریت گروه بندی لوازم</span></a></li>
+
+                        </ul>
+                        <ul class="nav collapse">
+                            <li><a href="~/Admin/equipmentSubCategori"><span class="title">مدیریت زیر کروه لوازم</span></a></li>
+
+                        </ul>
+
+                    </li>
+                    if (User.Identity.Name == "razmjoo" || User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            <a href="#"><i class="icon-doc-text"></i><span> ادمین ها</span></a>
+                            <ul class="nav collapse">
+                                <li><a href="~/Admin/listAdmin"><span class="title">فعالت ادمین در خصوص املاک</span></a></li>
+
+                            </ul>
+                            <ul class="nav collapse">
+                                <li><a href="~/Admin/LstJobActivityAdmin"><span class="title">فعالت ادمین در خصوص مشاغل</span></a></li>
+
+                            </ul>
+                            <ul class="nav collapse">
+                                <li><a href="~/Admin/LstEquipmentActivityAdmin"><span class="title">فعالت ادمین در خصوص لوازم دسته دوم</span></a></li>
+
+                            </ul>
+
+
+
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-doc-text"></i><span> مدیریت کاربران</span></a>
+                            <ul class="nav collapse">
+                                <li><a href="~/Admin/AdminUser"><span class="title">اسامی و مدیریت</span></a></li>
+
+                            </ul>
+
+                        </li>
+                    }
+
+
+
+                }
+                else
+                {
+
+                    @*<li class="has-sub">
+                            <a href="#"><i class="icon-layout"></i><span class="title"> محصولات</span></a>
+                            <ul class="nav collapse">
+
+                                <li><a href="~/Product/ShowProduct"><span class="title">مشاهده محصولات</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a href="~/FactorControl/Register"><span class="title">ثبت سفارش شما</span></a></li>
+
+
+                        <li>
+                            <a href="~/Home/AboutUs"><i class="icon-newspaper"></i><span class="title"> درباره ما</span></a>
+                        </li>*@
+                }
+            </ul>
+
+
+        </div>
+
+        <div class="main-container gray-bg">
+
+            <div class="main-header row">
+                <div class="col-sm-6 col-xs-7">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <p><a class="btn btn-success btn-link" href="../Admin/logOn/"><span class="glyphicon glyphicon-user"></span></a></p>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="~/Admin/logOut" class=" btn btn-danger "><span class="glyphicon glyphicon-off"></span></a>
+                    }
+                    <ul class="user-info pull-left">
+                        <li class="profile-info dropdown">
+
+
+
+                            <ul class="dropdown-menu">
+
+                                <li><a href="#/"><i class="icon-user"></i>پروفایل من</a></li>
+
+                                <li class="divider"></li>
+
+                                <li><a href="~/LogIn/LogOut"><i class="icon-logout"></i> خروج</a></li>
+                            </ul>
+
+
+                        </li>
+                    </ul>
+
+
+                </div>
+
+                <div class="col-sm-6 col-xs-5">
+                    <div class="pull-right">
+
+                        <ul class="user-info pull-left"></ul>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="main-content">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <canvas id="canvas" width="100" height="100"
+                            style="background-color:#f5f5f5;margin-right:1000px"></canvas>
+                }
+
+
+                @RenderBody()
+
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /main container -->
+
+    </div>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var radius = canvas.height / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.90
+        setInterval(drawClock, 1000);
+
+        function drawClock() {
+            drawFace(ctx, radius);
+            drawNumbers(ctx, radius);
+            drawTime(ctx, radius);
+        }
+
+        function drawFace(ctx, radius) {
+            var grad;
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+            grad.addColorStop(0, '#333');
+            grad.addColorStop(0.5, 'white');
+            grad.addColorStop(1, '#333');
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = radius * 0.1;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+            ctx.fillStyle = '#333';
+            ctx.fill();
+        }
+
+        function drawNumbers(ctx, radius) {
+            var ang;
+            var num;
+            ctx.font = radius * 0.15 + "px arial";
+            ctx.textBaseline = "middle";
+            ctx.textAlign = "center";
+            for (num = 1; num < 13; num++) {
+                ang = num * Math.PI / 6;
+                ctx.rotate(ang);
+                ctx.translate(0, -radius * 0.85);
+                ctx.rotate(-ang);
+                ctx.fillText(num.toString(), 0, 0);
+                ctx.rotate(ang);
+                ctx.translate(0, radius * 0.85);
+                ctx.rotate(-ang);
+            }
+        }
+
+        function drawTime(ctx, radius) {
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            //hour
+            hour = hour % 12;
+            hour = (hour * Math.PI / 6) +
+                (minute * Math.PI / (6 * 60)) +
+                (second * Math.PI / (360 * 60));
+            drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+            //minute
+            minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+            drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+            // second
+            second = (second * Math.PI / 30);
+            drawHand(ctx, second, radius * 0.9, radius * 0.02);
+        }
+
+        function drawHand(ctx, pos, length, width) {
+            ctx.beginPath();
+            ctx.lineWidth = width;
+            ctx.lineCap = "round";
+            ctx.moveTo(0, 0);
+            ctx.rotate(pos);
+            ctx.lineTo(0, -length);
+            ctx.stroke();
+            ctx.rotate(-pos);
+        }
+    </script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+
+    <script src="~/css/Admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="~/css/Admin/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="~/css/Admin/dist/js/adminlte.min.js"></script>
+    <script src="~/css/Admin/dist/js/demo.js"></script>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/js/bootstrap.bundle.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/js/bootstrap.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>*@
+    <script src="~/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+    <script src="~/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+
+    <!-- Vendors: Data tables -->
+    <script src="~/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/vendors/bower_components/jszip/dist/jszip.min.js"></script>
+    <script src="~/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+
+    <script src="~/js/app.min.js"></script>
+
+
+
+    @*AdminLayOut*@
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/plugins/css3-animate-it-plugin/css3-animate-it.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/plugins/metismenu/jquery.metisMenu.js"></script>
+    <script src="~/js/plugins/blockui-master/jquery-ui.js"></script>
+    <script src="~/js/plugins/blockui-master/jquery.blockUI.js"></script>
+    <script src="~/js/plugins/flot/jquery.flot.min.js"></script>
+    <script src="~/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="~/js/plugins/flot/jquery.flot.resize.min.js"></script>
+    <script src="~/js/plugins/flot/jquery.flot.selection.min.js"></script>
+    <script src="~/js/plugins/flot/jquery.flot.pie.min.js"></script>
+    <script src="~/js/plugins/flot/jquery.flot.time.min.js"></script>
+    <script src="~/js/functions.js"></script>
+    @*<script src="~/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="~/js/plugins/datatables/dataTables.bootstrap.min.js"></script>
+        <script src="~/js/plugins/datatables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+        <script src="~/js/plugins/datatables/jszip.min.js"></script>
+        <script src="~/js/plugins/datatables/pdfmake.min.js"></script>
+        <script src="~/js/plugins/datatables/vfs_fonts.js"></script>
+        <script src="~/js/plugins/datatables/extensions/Buttons/js/buttons.html5.js"></script>
+        <script src="~/js/plugins/datatables/extensions/Buttons/js/buttons.colVis.js"></script>
+        <script src="~/js/plugins/chartjs/Chart.min.js"></script>*@
+    @* /////////////////////////////// *@
+    @*<script src="~/Script/modal.js"></script>*@
+    @*<script src="~/Script/ajaxsscrip.js"></script>*@
+    @*<script src="~/Script/Common.js"></script>*@
+    @*<script src="~/Script/HomeProduct.js"></script>*@
+    @*<script src="~/Script/DataTable.js"></script>
+        <script src="~/Script/DataTablePhotoCustomer.js"></script>
+        <script src="~/Script/DataTablePhotoProduct.js"></script>
+        <script src="~/Script/DataTableProductType.js"></script>*@
+    @*<script src="~/Script/filltag.js"></script>*@
+    @*<script src="~/Script/validitycheck.js"></script>*@
+    @*<script src="~/Script/model/ProductModel.js"></script>*@
+    @*<script src="~/Script/model/UsersandCustomersModel.js"></script>*@
+    @*<script src="~/Script/model/PrFactModel.js"></script>*@
+    @*<script src="~/Script/model/PrTypeModel.js"></script>*@
+    @RenderSection("viewscript", false)
+</body>
+</html>

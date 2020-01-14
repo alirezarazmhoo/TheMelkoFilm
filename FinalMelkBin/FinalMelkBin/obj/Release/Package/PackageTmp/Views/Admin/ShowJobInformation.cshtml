@@ -1,0 +1,235 @@
+﻿@using FinalMelkBin.Models;
+
+
+@{
+    TheFinalMelkobinEntities Context = new TheFinalMelkobinEntities();
+    long IdJob = Convert.ToInt64(ViewBag.IdJob);
+    var Job = Context.jobs.Where(p => p.id == IdJob).Select(p => new { p.title, p.adminComment,p.imageUrl,p.film,p.sabeghe,p.otherMaharat,CityName=p.city.cityName, p.mobile, SubCityName=p.subCity.subCityname, p.email, p.fullName, JobCat=p.jobCategori.namee, JobSubName=p.jobSubCategori.namee, p.Mablagh, p.sharheVazayef, p.tahsilat, p.userType, p.vazayefRoozaneVaHaftegiVaMahane}).FirstOrDefault();
+    var Images = Context.jobPictures.Where(p => p.jobId == IdJob).Select(p => new { p.id, p.url }).ToList();
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='shortcut icon' type='image/x-icon' href='~/Images/favicon.ico' />
+
+    <link href="~/css/entypo.css" rel="stylesheet">
+
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/css/plugins/css3-animate-it-plugin/animations.css" rel="stylesheet">
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/plugins/chartist/chartist.min.css" rel="stylesheet">
+    <link href="~/css/mouldifi-core.css" rel="stylesheet">
+
+
+    <link href="~/css/mouldifi-forms.css" rel="stylesheet">
+    <link href="~/css/plugins/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="~/js/plugins/datatables/extensions/Buttons/css/buttons.dataTables.css" rel="stylesheet">
+
+    <link href="~/css/bootstrap-rtl.min.css" rel="stylesheet">
+
+    <link href="~/css/mouldifi-rtl-core.css" rel="stylesheet">
+    <link href="~/css/Index.css" rel="stylesheet" />
+    <title>ShowMelkInformation</title>
+</head>
+<body>
+    <div class="panel panel-success">
+
+        <div class="panel-heading" style="text-align:center"><h3>اطلاعات  @Job.title </h3></div>
+
+    </div>
+    <div class="dt-body-center">
+        <table class="table text-center table-responsive table-bordered table-hover">
+            <tr>
+                <th class="text-center text-info">عنوان</th>
+                <th class="text-center text-info">ویژگی</th>
+            </tr>
+
+            <tr>
+                <th class="text-center">نام و نام خانوادگی</th>
+
+                <th class="text-center">@Job.fullName</th>
+
+            </tr>
+            <tr>
+                <th class="text-center">موبایل</th>
+
+                <th class="text-center">@Job.mobile</th>
+
+            </tr>
+            <tr>
+                <th class="text-center">نشانی پستی</th>
+
+                <th class="text-center">@Job.email</th>
+
+            </tr>
+            <tr>
+                <th class="text-center"> استان</th>
+
+                <th class="text-center">@Job.CityName</th>
+
+            </tr>
+            <tr>
+                <th class="text-center"> شهرستان</th>
+
+                <th class="text-center">@Job.SubCityName</th>
+
+            </tr>
+
+            <tr>
+                <th class="text-center">سابقه</th>
+
+                <th class="text-center">@Job.sabeghe</th>
+
+            </tr>
+            <tr>
+                <th class="text-center"> مهارت های دیگر</th>
+
+                <th class="text-center">@Job.otherMaharat</th>
+
+            </tr>
+            <tr>
+                <th class="text-center"> دسته شغلی</th>
+
+                <th class="text-center">@Job.JobCat</th>
+
+            </tr>
+            <tr>
+                <th class="text-center">  زیر دسته شغلی</th>
+
+                <th class="text-center">@Job.JobSubName</th>
+
+            </tr>
+            <tr>
+                <th class="text-center">  دستمزد در خواستی</th>
+
+                <th class="text-center">@Job.Mablagh</th>
+
+            </tr>
+            <tr>
+                <th class="text-center"> شرح وظایف</th>
+
+                <th class="text-center">@Job.sharheVazayef</th>
+
+            </tr>
+            <tr>
+                <th class="text-center"> شرح وظایف روزانه ،هفتگی ، ماهانه </th>
+
+                <th class="text-center">@Job.vazayefRoozaneVaHaftegiVaMahane</th>
+
+            </tr>
+
+            <tr>
+                <th class="text-center">تحصیلات</th>
+
+                @if (Job.tahsilat == 0)
+                {
+                    <th class="text-center">بیسواد</th>
+                }
+                @if (Job.tahsilat == 1)
+                {
+
+                    <th class="text-center">زیردیپلم</th>
+                }
+                @if (Job.tahsilat == 2)
+                {
+
+                    <th class="text-center">دیپلم</th>
+                }
+                @if (Job.tahsilat == 3)
+                {
+
+                    <th class="text-center">فوق دیپلم</th>
+                }
+                @if (Job.tahsilat == 4)
+                {
+
+                    <th class="text-center">لیسانس </th>
+                }
+                @if (Job.tahsilat == 5)
+                {
+
+                    <th class="text-center">فوق لیسانس </th>
+                }
+                @if (Job.tahsilat == 6)
+                {
+
+                    <th class="text-center">دکتری </th>
+                }
+
+
+            </tr>
+            <tr>
+                <th class="text-center">نوع کاربر</th>
+
+                @if (Job.userType == 0)
+                {
+                    <th class="text-center">عادی</th>
+                }
+                @if (Job.userType == 1)
+                {
+
+                    <th class="text-center">سازمانی</th>
+                }
+
+
+            </tr>
+            <tr>
+                <th class="text-center">  تصویر اصلی</th>
+
+                    <th style="width:60px;height:70px;"><img src="@Job.imageUrl" style="width:60px;height:70px;" /></th>
+             
+             
+            </tr>
+            <tr>
+                <th class="text-center">  دیگر تصاویر</th>
+                <th style="width:60px;height:70px;">
+
+                 
+                        @foreach (var pics in Images)
+                        {
+                            <img src="@pics.url" style="width:60px;height:70px;" />
+                        }
+
+                    </th>
+            </tr>
+
+            <tr>
+                <th class="text-center"> فیلم آگهی</th>
+            
+
+                    <th style="width:60px;height:70px;"><video src="@Job.film" style="width:60px;height:70px;"></video></th>
+                
+              
+
+
+            </tr>
+            <tr>
+                <th class="text-center">  نظرکارشناس</th>
+                @if (Job.adminComment != null)
+                {
+                    <th class="text-center">@Job.adminComment</th>
+                }
+                @if (Job.adminComment == null)
+                {
+                    <th class="text-center">بدون نظر</th>
+                }
+
+            </tr>
+
+        </table>
+    </div>
+</body>
+    </html>
+

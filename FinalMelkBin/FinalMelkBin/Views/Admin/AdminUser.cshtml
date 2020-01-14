@@ -1,0 +1,388 @@
+﻿@using FinalMelkBin.Models;
+@{
+    ViewBag.Title = "AdminUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section viewscript{
+    <script src="~/Scripts/AdminUsers/AdminUserManager.js"></script>
+
+    <script src="~/Scripts/AdminUsers/AdminUserTable.js"></script>
+    <script src="~/Scripts/AdminUsers/AdminUserLaod.js"></script>
+}
+@{
+    TheFinalMelkobinEntities _Context = new TheFinalMelkobinEntities();
+    var list = _Context.RollAdmins.Select(p => new { ID = p.RoleID, RoleName = p.RoleDes }).ToList();
+
+
+}
+
+<ol class="breadcrumb breadcrumb-2">
+    <li><a href="~/Home/Index"><i class="glyphicon glyphicon-home"></i>خانه</a></li>
+    <li class="active"><strong>مدیریت کاربران</strong></li>
+
+</ol>
+
+<div id="ProductRegister">
+
+</div>
+
+
+<div class="row" id="divAdminUser">
+
+    <div class="col-lg-12 animatedParent animateOnce z-index-50">
+
+        <div class="panel panel-default animated fadeInUp">
+            <div class="panel-heading clearfix">
+
+
+            </div>
+            <div class="panel-heading clearfix" style="background-color:darkslateblue">
+                <button id="btnRegister" type="button" class="btn btn-dark btn-lg" data-toggle="modal" data-target="#AdminUserModal">ثبت جدید</button>
+
+            </div>
+            <div class="panel-body">
+                <div class="row" style="height:80px;width:100%">
+
+                    <label style="margin-right:11px;color:black;font-family:'Arial Rounded MT'"> نمایش رکورد از:</label><select name="state" class="form-control" id="maxRows" style="width:150px;margin-right:11px;color:brown">
+                        <option value="10">10</option>
+                        <option value="5">5</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="75">75</option>
+                        <option value="100">100</option>
+                        <option value="50000">همه</option>
+                    </select>
+
+
+                </div>
+
+
+                <button id="serchmelks" type="submit" onclick="SearchMelk();" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-search"></span> جستجو</button>
+                <input type="text" class="w3-input" id="Description" placeholder="کاربر.." name="search">
+
+
+                <div id="divMelk" class="table-responsive">
+
+                </div>
+                <div class="pagination-container" style="cursor:pointer">
+                    <nav>
+                        <ul class="pagination"></ul>
+                    </nav>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display:none;margin-top:5px;" id="AdmibUserSuuccess" class="alert alert-success">
+        <strong>Success!</strong> مشخصات کاربر با موفقیت ثبت گردید!
+        <i class="icon-check"></i>
+    </div>
+
+
+</div>
+<div class="modal fade" id="AdminUserModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:forestgreen">
+
+                <h4 class="modal-title" style="color:white">ثبت کاربر </h4>
+
+            </div>
+            <form id="FormRegisterCity">
+                <div class="modal-body">
+                    <label>نام و نام خانوادگی:</label>
+                    <input type="text" name="AdminFullName" id="AdminFullName" class="form-control" placeholder="نام کاربر را وارد کنید" />
+                    <label>تلفن:</label>
+                    <input type="text" name="AdminUserTelephone" id="AdminUserTelephone" class="form-control" placeholder=" تلفن را وارد کنید" />
+                    <label>شماره همراه:</label>
+                    <input type="text" name="AdminUserMobile" id="AdminUserMobile" class="form-control" placeholder="شماره همراه را وارد کنید" />
+                    <label>نام کاربری:</label>
+                    <input type="text" name="AdminUserName" id="AdminUserName" class="form-control" placeholder="نام کاربری را وارد کنید" />
+                    <label>رمز عبور:</label>
+                    <input type="text" name="AdminUserPassword" id="AdminUserPassword" class="form-control" placeholder="رمز عبور را وارد کنید" />
+                    <input type="hidden" name="ID" id="ID" />
+                    <div style="display:none;margin-top:5px;" id="AdminUserempty" class="alert alert-danger">
+                        <strong>خطا!</strong> فیلدهارا کامل کنید
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="AdminUserRegister()" class="btn btn-primary">ثبت</button>
+                    <button type="button" id="CloseModal" onclick="resetmodal()" class="btn btn-danger" data-dismiss="modal">بستن</button>
+                </div>
+                <div class="text-center">
+
+                    <label class=" text-danger" id="ValidCityName"></label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="StatusModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color:darkgray;">
+                <button type="button" class="close" onclick="resetStatusMelkModal();" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" style=" color:white;"> ثبت دسترسی </h4>
+            </div>
+            <div class="modal-body row" style="scrollbar-3dlight-color:black" >
+                <div class="checkbox" style="margin-right:30px; ">
+                    @foreach (var item in list)
+                    {
+                        if (item.RoleName == "نمایش منوی استان")
+                        {
+                            <div style="background-color:darkkhaki;width:98%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی استان")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی شهرستان")
+                        {
+                            <div style="background-color:darkkhaki;width:98%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی شهرستان")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "مشاهده منوی املاک")
+                        {
+                            <div style="background-color:red;width:98%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">(دسترسی به منوی املاک (برای دسترسی به دیگر منو های این بخش، این مجوز ضروری است)</p2><br></div>
+                        }
+                        if (item.RoleName == "مشاهده منوی املاک")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی دسته بندی املاک")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی دسته بندی املاک")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی زیردسته اول املاک")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی زیردسته اول املاک")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی سال ساخت املاک")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی سال ساخت املاک")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی زیردسته دوم املاک")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی زیردسته دوم املاک")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "مشاهده منوی مشاغل")
+                        {
+                            <div style="background-color:red;width:98%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white">(دسترسی به منوی مشاغل ساختمانی(برای دسترسی به دیگر منو های این بخش، این مجوز ضروری است)</p2><br></div>
+                        }
+                        if (item.RoleName == "مشاهده منوی مشاغل")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی دسته بندی شغل")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی دسته بندی شغل")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی زیردسته اول مشاغل")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی زیردسته اول مشاغل")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منو زیردسته دوم مشاغل")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منو زیردسته دوم مشاغل")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی گروه اصلی مصالح ساختمانی")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی گروه اصلی مصالح ساختمانی")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منو زیرگروه اول مصالح ساختمان")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">@item.RoleName</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منو زیرگروه اول مصالح ساختمان")
+                        {
+                            continue;
+                        }
+                        if (item.RoleName == "نمایش منوی زیرگروه دوم مصالح سختمانی")
+                        {
+                            <div style="background-color:forestgreen;width:50%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white;">نمایش منو زیرگروه دوم مصالح ساختمانی</p2><br></div>
+                        }
+                        if (item.RoleName == "نمایش منوی زیرگروه دوم مصالح سختمانی")
+                        {
+                            continue;
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        if (item.RoleName == "دسترسی به منوی مصالح ساختمانی")
+                        {
+                            <div style="background-color:red;width:98%"><input type="checkbox" id="@item.ID" value=@item.ID><p2 style="color:white">(دسترسی به منوی مصالح ساختمانی(برای دسترسی به دیگر منو های این بخش، این مجوز ضروری است)</p2><br></div>
+                        }
+                        if (item.RoleName == "دسترسی به منوی مصالح ساختمانی")
+                        {
+                            continue;
+                        }
+                        <input type="checkbox" id="@item.ID" value=@item.ID>@item.RoleName<br>
+
+
+
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="resetStatusMelkModal();" data-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-success" id="OkStatusButtun" data-dismiss="modal">تایید</button>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="RemoveModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-danger ">حذف ملک</h4>
+            </div>
+            <div class="modal-body">
+                <p>آیا مایل به ادامه عملیات هستید؟</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="OkButtun" data-dismiss="modal">تایید</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div style="display:none;margin-top:5px;" id="CitySuuccess" class="alert alert-success">
+        <strong>Success!</strong> مشخصات شهر با موفقیت ثبت گردید!
+        <i class="icon-check"></i>
+    </div>*@
+
+
+
+<script>
+    window.onload = Load;
+    function Load() {
+
+
+        LoadAdminUser();
+
+        var table = '#TableAdminUser';
+        $('#maxRows').on('click', function () {
+            $('.pagination').html('')
+            var trnum = 0
+            var maxRows = parseInt($(this).val())
+            var totalRows = $(table + ' tbody tr').length
+            $(table + ' tr:gt(0)').each(function () {
+                trnum++
+                if (trnum > maxRows) {
+                    $(this).hide()
+                }
+                if (trnum <= maxRows) {
+                    $(this).show()
+                }
+            })
+            if (totalRows > maxRows) {
+                var pagenum = Math.ceil(totalRows / maxRows)
+                for (var i = 1; i <= pagenum;) {
+                    $('.pagination').append('<li data-page="' + i + '">\<span>' + i++ + '<span class="sr-only">(current)</span></span>\</li>').show()
+
+
+                }
+            }
+            $('.pagination li:first-child').addClass('active')
+            $('.pagination li').on('click', function () {
+                var pageNum = $(this).attr('data-page')
+                var trIndex = 0;
+                $('.pagination li').removeClass('active')
+                $(this).addClass('active')
+                $(table + ' tr:gt(0)').each(function () {
+                    trIndex++
+                    if (trIndex > (maxRows * pageNum) || trIndex <= ((maxRows * pageNum) - maxRows)) {
+                        $(this).hide()
+                    } else {
+                        $(this).show()
+                    }
+                })
+            })
+        })
+        $(function () {
+            $('table tr:eq(0)').prepend('<th>ID</th>')
+            var id = 0;
+            $('table tr:gt(0)').each(function () {
+                id++
+                $(this).prepend('<td>' + id + '</td>')
+
+            })
+        })
+
+        $('#MelkStatusCode').change(function () {
+
+            $('#serchmelks').click();
+        });
+
+
+        $('#divAdminUser').mouseenter(function () {
+
+            $('#maxRows').val($('#maxRows option:selected').val()).click()
+        });
+    }
+    function resetmodal() {
+        $('#AdminUserModal').on('hidden.bs.modal', function (e) {
+            $(this).find("input").val('').end()
+
+
+        });
+    }
+
+</script>
+

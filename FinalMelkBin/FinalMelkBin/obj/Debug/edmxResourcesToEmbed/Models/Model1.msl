@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="melkofilm_dbModelStoreContainer" CdmEntityContainer="TheFinalMelkobinEntities">
+    <EntitySetMapping Name="buildDates">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.buildDate">
+        <MappingFragment StoreEntitySet="buildDate">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pDate" ColumnName="pDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.Categori">
+        <MappingFragment StoreEntitySet="Categori">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="categoriName" ColumnName="categoriName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cityName" ColumnName="cityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipmentCategoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.equipmentCategori">
+        <MappingFragment StoreEntitySet="equipmentCategori">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="namee" ColumnName="namee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipmentPictures">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.equipmentPicture">
+        <MappingFragment StoreEntitySet="equipmentPictures">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="equipmentId" ColumnName="equipmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipmentSubCategoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.equipmentSubCategori">
+        <MappingFragment StoreEntitySet="equipmentSubCategori">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="namee" ColumnName="namee" />
+          <ScalarProperty Name="equipmentCategoriId" ColumnName="equipmentCategoriId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipmetAcceptUsers">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.equipmetAcceptUser">
+        <MappingFragment StoreEntitySet="equipmetAcceptUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="equipmentId" ColumnName="equipmentId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="statusSelected" ColumnName="statusSelected" />
+          <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipmetUsers">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.equipmetUser">
+        <MappingFragment StoreEntitySet="equipmetUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
+          <ScalarProperty Name="abutMe" ColumnName="abutMe" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="userImageUrl" ColumnName="userImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobAcceptUsers">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.jobAcceptUser">
+        <MappingFragment StoreEntitySet="jobAcceptUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="jobId" ColumnName="jobId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="statusSelected" ColumnName="statusSelected" />
+          <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobCategoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.jobCategori">
+        <MappingFragment StoreEntitySet="jobCategori">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="namee" ColumnName="namee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobPictures">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.jobPicture">
+        <MappingFragment StoreEntitySet="jobPicture">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="jobId" ColumnName="jobId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobSubCategoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.jobSubCategori">
+        <MappingFragment StoreEntitySet="jobSubCategori">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="namee" ColumnName="namee" />
+          <ScalarProperty Name="jobCategoriId" ColumnName="jobCategoriId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobUsers">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.jobUser">
+        <MappingFragment StoreEntitySet="jobUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
+          <ScalarProperty Name="abutMe" ColumnName="abutMe" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="userImageUrl" ColumnName="userImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="melkAcceptUsers">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.melkAcceptUser">
+        <MappingFragment StoreEntitySet="melkAcceptUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="melkId" ColumnName="melkId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="statusSelected" ColumnName="statusSelected" />
+          <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pictures">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.picture">
+        <MappingFragment StoreEntitySet="pictures">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="melkId" ColumnName="melkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rolls">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.roll">
+        <MappingFragment StoreEntitySet="roll">
+          <ScalarProperty Name="rolId" ColumnName="rolId" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCategoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.SubCategori">
+        <MappingFragment StoreEntitySet="SubCategori">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="subCategoriName" ColumnName="subCategoriName" />
+          <ScalarProperty Name="categoriId" ColumnName="categoriId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subCities">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.subCity">
+        <MappingFragment StoreEntitySet="subCity">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="subCityname" ColumnName="subCityname" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminUsers">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.AdminUser">
+        <MappingFragment StoreEntitySet="AdminUser">
+          <ScalarProperty Name="rolId" ColumnName="rolId" />
+          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RollAdmins">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.RollAdmin">
+        <MappingFragment StoreEntitySet="RollAdmin">
+          <ScalarProperty Name="RoleDes" ColumnName="RoleDes" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserRoll" TypeName="melkofilm_dbModel.UserRoll" StoreEntitySet="UserRoll">
+      <EndProperty Name="RollAdmin">
+        <ScalarProperty Name="RoleID" ColumnName="RollID" />
+      </EndProperty>
+      <EndProperty Name="AdminUser">
+        <ScalarProperty Name="id" ColumnName="UserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="childjobSubCategoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.childjobSubCategori">
+        <MappingFragment StoreEntitySet="childjobSubCategori">
+          <ScalarProperty Name="jobSubCategoriId" ColumnName="jobSubCategoriId" />
+          <ScalarProperty Name="childJobSubCategoriName" ColumnName="childJobSubCategoriName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChildSubCategoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.ChildSubCategori">
+        <MappingFragment StoreEntitySet="ChildSubCategori">
+          <ScalarProperty Name="subCategoriId" ColumnName="subCategoriId" />
+          <ScalarProperty Name="childSubCategoriName" ColumnName="childSubCategoriName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="childSubEquipmentCategoris">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.childSubEquipmentCategori">
+        <MappingFragment StoreEntitySet="childSubEquipmentCategori">
+          <ScalarProperty Name="equipmentSubCategoriId" ColumnName="equipmentSubCategoriId" />
+          <ScalarProperty Name="childSubEquipmentCategoriName" ColumnName="childSubEquipmentCategoriName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipments">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.equipment">
+        <MappingFragment StoreEntitySet="equipment">
+          <ScalarProperty Name="adminComment" ColumnName="adminComment" />
+          <ScalarProperty Name="film" ColumnName="film" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="pexpireDate" ColumnName="pexpireDate" />
+          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
+          <ScalarProperty Name="childEquipmentSubCategoriId" ColumnName="childEquipmentSubCategoriId" />
+          <ScalarProperty Name="equipmentSubCategoriId" ColumnName="equipmentSubCategoriId" />
+          <ScalarProperty Name="equipmentCategoriId" ColumnName="equipmentCategoriId" />
+          <ScalarProperty Name="subCityId" ColumnName="subCityId" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="EquipmentAddress" ColumnName="EquipmentAddress" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobs">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.job">
+        <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="adminComment" ColumnName="adminComment" />
+          <ScalarProperty Name="advertisementType" ColumnName="advertisementType" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
+          <ScalarProperty Name="pExpire" ColumnName="pExpire" />
+          <ScalarProperty Name="Mablagh" ColumnName="Mablagh" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="film" ColumnName="film" />
+          <ScalarProperty Name="vazayefRoozaneVaHaftegiVaMahane" ColumnName="vazayefRoozaneVaHaftegiVaMahane" />
+          <ScalarProperty Name="sharheVazayef" ColumnName="sharheVazayef" />
+          <ScalarProperty Name="childjobSubCategoriId" ColumnName="childjobSubCategoriId" />
+          <ScalarProperty Name="jobSubCategoriId" ColumnName="jobSubCategoriId" />
+          <ScalarProperty Name="jobCategoriId" ColumnName="jobCategoriId" />
+          <ScalarProperty Name="sabeghe" ColumnName="sabeghe" />
+          <ScalarProperty Name="otherMaharat" ColumnName="otherMaharat" />
+          <ScalarProperty Name="tahsilat" ColumnName="tahsilat" />
+          <ScalarProperty Name="subCityId" ColumnName="subCityId" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="JobAddress" ColumnName="JobAddress" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="melks">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.melk">
+        <MappingFragment StoreEntitySet="melk">
+          <ScalarProperty Name="adminComment" ColumnName="adminComment" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="ghabeleTabdilBarayeEjareh" ColumnName="ghabeleTabdilBarayeEjareh" />
+          <ScalarProperty Name="ghabeleTabdilBarayeRahn" ColumnName="ghabeleTabdilBarayeRahn" />
+          <ScalarProperty Name="gheymateEjareh" ColumnName="gheymateEjareh" />
+          <ScalarProperty Name="gheymateRahn" ColumnName="gheymateRahn" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="childSubCategoriId" ColumnName="childSubCategoriId" />
+          <ScalarProperty Name="subCategoriId" ColumnName="subCategoriId" />
+          <ScalarProperty Name="subCityId" ColumnName="subCityId" />
+          <ScalarProperty Name="statusId" ColumnName="statusId" />
+          <ScalarProperty Name="expireDate" ColumnName="expireDate" />
+          <ScalarProperty Name="pExpireDate" ColumnName="pExpireDate" />
+          <ScalarProperty Name="isVip" ColumnName="isVip" />
+          <ScalarProperty Name="categoriId" ColumnName="categoriId" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="buildDateId" ColumnName="buildDateId" />
+          <ScalarProperty Name="tedadOtaghkhab" ColumnName="tedadOtaghkhab" />
+          <ScalarProperty Name="tedadVahedDarTabaghe" ColumnName="tedadVahedDarTabaghe" />
+          <ScalarProperty Name="tedadTabaghat" ColumnName="tedadTabaghat" />
+          <ScalarProperty Name="zirbana" ColumnName="zirbana" />
+          <ScalarProperty Name="typeEskelet" ColumnName="typeEskelet" />
+          <ScalarProperty Name="sanadType" ColumnName="sanadType" />
+          <ScalarProperty Name="sanad" ColumnName="sanad" />
+          <ScalarProperty Name="melkType" ColumnName="melkType" />
+          <ScalarProperty Name="gheymateForoosh" ColumnName="gheymateForoosh" />
+          <ScalarProperty Name="typeDastebandi" ColumnName="typeDastebandi" />
+          <ScalarProperty Name="isPangerehDojedareh" ColumnName="isPangerehDojedareh" />
+          <ScalarProperty Name="isKomodDivari" ColumnName="isKomodDivari" />
+          <ScalarProperty Name="saghf" ColumnName="saghf" />
+          <ScalarProperty Name="divar" ColumnName="divar" />
+          <ScalarProperty Name="isAntenMarkazi" ColumnName="isAntenMarkazi" />
+          <ScalarProperty Name="isIphoneTasviry" ColumnName="isIphoneTasviry" />
+          <ScalarProperty Name="garmayeshi" ColumnName="garmayeshi" />
+          <ScalarProperty Name="cooler" ColumnName="cooler" />
+          <ScalarProperty Name="kafpoosh" ColumnName="kafpoosh" />
+          <ScalarProperty Name="isDarbZedSerghat" ColumnName="isDarbZedSerghat" />
+          <ScalarProperty Name="mogheiyatJographiya" ColumnName="mogheiyatJographiya" />
+          <ScalarProperty Name="vaziyatSokoonat" ColumnName="vaziyatSokoonat" />
+          <ScalarProperty Name="IsMaster" ColumnName="IsMaster" />
+          <ScalarProperty Name="IsDastshooyiFarangi" ColumnName="IsDastshooyiFarangi" />
+          <ScalarProperty Name="isFazayeSabz" ColumnName="isFazayeSabz" />
+          <ScalarProperty Name="isPentHouse" ColumnName="isPentHouse" />
+          <ScalarProperty Name="isSalonVarzeshi" ColumnName="isSalonVarzeshi" />
+          <ScalarProperty Name="isEstakhrVaSona" ColumnName="isEstakhrVaSona" />
+          <ScalarProperty Name="isLaby" ColumnName="isLaby" />
+          <ScalarProperty Name="isSalonEjtema" ColumnName="isSalonEjtema" />
+          <ScalarProperty Name="isHayat" ColumnName="isHayat" />
+          <ScalarProperty Name="isKabinet" ColumnName="isKabinet" />
+          <ScalarProperty Name="isSystemGarmayeshiMarkazi" ColumnName="isSystemGarmayeshiMarkazi" />
+          <ScalarProperty Name="isNegahban" ColumnName="isNegahban" />
+          <ScalarProperty Name="parking" ColumnName="parking" />
+          <ScalarProperty Name="tozihatTakmily" ColumnName="tozihatTakmily" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="film" ColumnName="film" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="userImageUrl" ColumnName="userImageUrl" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="abutMe" ColumnName="abutMe" />
+          <ScalarProperty Name="rolId" ColumnName="rolId" />
+          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
