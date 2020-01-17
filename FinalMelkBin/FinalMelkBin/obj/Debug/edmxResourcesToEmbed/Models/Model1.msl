@@ -265,40 +265,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="jobs">
-      <EntityTypeMapping TypeName="melkofilm_dbModel.job">
-        <MappingFragment StoreEntitySet="job">
-          <ScalarProperty Name="adminComment" ColumnName="adminComment" />
-          <ScalarProperty Name="advertisementType" ColumnName="advertisementType" />
-          <ScalarProperty Name="userType" ColumnName="userType" />
-          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
-          <ScalarProperty Name="pExpire" ColumnName="pExpire" />
-          <ScalarProperty Name="Mablagh" ColumnName="Mablagh" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
-          <ScalarProperty Name="film" ColumnName="film" />
-          <ScalarProperty Name="vazayefRoozaneVaHaftegiVaMahane" ColumnName="vazayefRoozaneVaHaftegiVaMahane" />
-          <ScalarProperty Name="sharheVazayef" ColumnName="sharheVazayef" />
-          <ScalarProperty Name="childjobSubCategoriId" ColumnName="childjobSubCategoriId" />
-          <ScalarProperty Name="jobSubCategoriId" ColumnName="jobSubCategoriId" />
-          <ScalarProperty Name="jobCategoriId" ColumnName="jobCategoriId" />
-          <ScalarProperty Name="sabeghe" ColumnName="sabeghe" />
-          <ScalarProperty Name="otherMaharat" ColumnName="otherMaharat" />
-          <ScalarProperty Name="tahsilat" ColumnName="tahsilat" />
-          <ScalarProperty Name="subCityId" ColumnName="subCityId" />
-          <ScalarProperty Name="cityId" ColumnName="cityId" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="mobile" ColumnName="mobile" />
-          <ScalarProperty Name="fullName" ColumnName="fullName" />
-          <ScalarProperty Name="JobAddress" ColumnName="JobAddress" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="lat" ColumnName="lat" />
-          <ScalarProperty Name="lon" ColumnName="lon" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="melks">
       <EntityTypeMapping TypeName="melkofilm_dbModel.melk">
         <MappingFragment StoreEntitySet="melk">
@@ -381,6 +347,41 @@
           <ScalarProperty Name="mobile" ColumnName="mobile" />
           <ScalarProperty Name="telephone" ColumnName="telephone" />
           <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobs">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.job">
+        <MappingFragment StoreEntitySet="job">
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="adminComment" ColumnName="adminComment" />
+          <ScalarProperty Name="advertisementType" ColumnName="advertisementType" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
+          <ScalarProperty Name="pExpire" ColumnName="pExpire" />
+          <ScalarProperty Name="Mablagh" ColumnName="Mablagh" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="film" ColumnName="film" />
+          <ScalarProperty Name="vazayefRoozaneVaHaftegiVaMahane" ColumnName="vazayefRoozaneVaHaftegiVaMahane" />
+          <ScalarProperty Name="sharheVazayef" ColumnName="sharheVazayef" />
+          <ScalarProperty Name="childjobSubCategoriId" ColumnName="childjobSubCategoriId" />
+          <ScalarProperty Name="jobSubCategoriId" ColumnName="jobSubCategoriId" />
+          <ScalarProperty Name="jobCategoriId" ColumnName="jobCategoriId" />
+          <ScalarProperty Name="sabeghe" ColumnName="sabeghe" />
+          <ScalarProperty Name="otherMaharat" ColumnName="otherMaharat" />
+          <ScalarProperty Name="tahsilat" ColumnName="tahsilat" />
+          <ScalarProperty Name="subCityId" ColumnName="subCityId" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="JobAddress" ColumnName="JobAddress" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

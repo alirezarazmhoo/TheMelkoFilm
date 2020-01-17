@@ -85,11 +85,10 @@ namespace FinalMelkBin.Controllers.api
 
         public object LoadMelks(int page)
         {
-			var thisyear = DateTime.Now.Year;
-			var thisMonth = DateTime.Now.Month;
-			var Today = DateTime.Now.Day;
+			var thisyear = DateTime.Now;
+			
 
-            var result = Context.melks.Where(s=>s.expireDate.Year >= thisyear && s.expireDate.Month >=thisMonth && s.statusId==1.ToString()).Select(p => new
+            var result = Context.melks.Where(s=>s.expireDate >= thisyear&& s.statusId==1.ToString()).Select(p => new
             {
                 p.id,
                 p.userType,
@@ -1069,15 +1068,6 @@ namespace FinalMelkBin.Controllers.api
             return new { Data = PMelk.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.subCategoriId, x.childSubCategoriId,x.id, x.title, x.lon, x.lat, x.subCityId, x.categoriId, x.imageUrl }), totalCount = PMelk.Count() };
         }
 
-
-
-
-
-
-
-
-
-
         [HttpPost]
         [Route("api/Home/SearchMelkByTitle/{page}")]
 
@@ -1768,9 +1758,6 @@ namespace FinalMelkBin.Controllers.api
             }
             var finduserr = Context.jobUsers.FirstOrDefault(p => p.apiToken == Joba.apiToken);
 
-
-
-
             _job.title = Joba.title;
             _job.lon = Joba.lon;
             _job.lat = Joba.lat;
@@ -1789,11 +1776,13 @@ namespace FinalMelkBin.Controllers.api
             _job.otherMaharat = Joba.otherMaharat;
             _job.childjobSubCategoriId = Joba.childjobSubCategoriId;
             _job.pExpire = ExtensionFunction.ToPersian((DateTime.Now.AddMonths(1)));
-            //imageUrl خط اخر
-            //_job.isHasPardakhtBime = Joba.isHasPardakhtBime;
-            //_job.modatePardakhtBime = Joba.modatePardakhtBime;
-            //_job.shomareBime = Joba.shomareBime;
-            _job.Mablagh = Joba.Mablagh;
+			//imageUrl خط اخر
+			//_job.isHasPardakhtBime = Joba.isHasPardakhtBime;
+			//_job.modatePardakhtBime = Joba.modatePardakhtBime;
+			//_job.shomareBime = Joba.shomareBime;
+			_job.ExpireDate = DateTime.Now.AddMonths(1);
+
+			_job.Mablagh = Joba.Mablagh;
             _job.userType = Joba.userType;
             _job.advertisementType = Joba.advertisementType;
             //apiToken خط اخر
@@ -1945,9 +1934,9 @@ namespace FinalMelkBin.Controllers.api
 
         public object LoadJobs(int page)
         {
-			
+			var thisyear = DateTime.Now;
 
-			var result = Context.jobs.Where(s=>s.status==1.ToString()).Select(x => new
+			var result = Context.jobs.Where(s=>s.status==1.ToString() &&s.ExpireDate >=thisyear ).Select(x => new
             {
                 x.id,
                 x.title,
@@ -2962,10 +2951,11 @@ namespace FinalMelkBin.Controllers.api
             _equipment.EquipmentAddress = EquipmentA.EquipmentAddress;
             _equipment.childEquipmentSubCategoriId = EquipmentA.childEquipmentSubCategoriId;
             _equipment.pexpireDate = ExtensionFunction.ToPersian((DateTime.Now.AddMonths(1)));
+			_equipment.ExpireDate = DateTime.Now.AddMonths(1);
 
-            //imageUrl خط اخر
+			//imageUrl خط اخر
 
-            _equipment.userType = EquipmentA. userType;
+			_equipment.userType = EquipmentA. userType;
             //apiToken خط اخر
             if (finduserr != null)
             {
@@ -3115,7 +3105,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object LoadEquipments(int page)
         {
-            var result = Context.equipments.Where(s=>s.status ==1.ToString()).Select(x => new
+			var thisYear = DateTime.Now;
+            var result = Context.equipments.Where(s=>s.status ==1.ToString() && s.ExpireDate >= thisYear).Select(x => new
             {
                 x.id,
                 x.title,

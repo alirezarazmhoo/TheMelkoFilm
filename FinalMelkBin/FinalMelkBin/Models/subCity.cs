@@ -17,9 +17,9 @@ namespace FinalMelkBin.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public subCity()
         {
-            this.equipments = new HashSet<equipment>();
-            this.jobs = new HashSet<job>();
             this.melks = new HashSet<melk>();
+            this.jobs = new HashSet<job>();
+            this.equipments = new HashSet<equipment>();
         }
     
         public int id { get; set; }
@@ -28,10 +28,10 @@ namespace FinalMelkBin.Models
     
         public virtual city city { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<equipment> equipments { get; set; }
+        public virtual ICollection<melk> melks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<job> jobs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<melk> melks { get; set; }
+        public virtual ICollection<equipment> equipments { get; set; }
     }
 }

@@ -48,9 +48,9 @@ namespace FinalMelkBin.Models
         public virtual DbSet<childjobSubCategori> childjobSubCategoris { get; set; }
         public virtual DbSet<ChildSubCategori> ChildSubCategoris { get; set; }
         public virtual DbSet<childSubEquipmentCategori> childSubEquipmentCategoris { get; set; }
-        public virtual DbSet<equipment> equipments { get; set; }
-        public virtual DbSet<job> jobs { get; set; }
         public virtual DbSet<melk> melks { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<job> jobs { get; set; }
+        public virtual DbSet<equipment> equipments { get; set; }
     }
 }

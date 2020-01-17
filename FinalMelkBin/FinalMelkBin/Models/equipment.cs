@@ -43,6 +43,7 @@ namespace FinalMelkBin.Models
         public Nullable<int> userId { get; set; }
         public string film { get; set; }
         public string adminComment { get; set; }
+        public System.DateTime ExpireDate { get; set; }
     
         public virtual city city { get; set; }
         public virtual childSubEquipmentCategori childSubEquipmentCategori { get; set; }
