@@ -237,34 +237,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="equipments">
-      <EntityTypeMapping TypeName="melkofilm_dbModel.equipment">
-        <MappingFragment StoreEntitySet="equipment">
-          <ScalarProperty Name="adminComment" ColumnName="adminComment" />
-          <ScalarProperty Name="film" ColumnName="film" />
-          <ScalarProperty Name="userId" ColumnName="userId" />
-          <ScalarProperty Name="userType" ColumnName="userType" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="pexpireDate" ColumnName="pexpireDate" />
-          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
-          <ScalarProperty Name="childEquipmentSubCategoriId" ColumnName="childEquipmentSubCategoriId" />
-          <ScalarProperty Name="equipmentSubCategoriId" ColumnName="equipmentSubCategoriId" />
-          <ScalarProperty Name="equipmentCategoriId" ColumnName="equipmentCategoriId" />
-          <ScalarProperty Name="subCityId" ColumnName="subCityId" />
-          <ScalarProperty Name="cityId" ColumnName="cityId" />
-          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="mobile" ColumnName="mobile" />
-          <ScalarProperty Name="lon" ColumnName="lon" />
-          <ScalarProperty Name="lat" ColumnName="lat" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="EquipmentAddress" ColumnName="EquipmentAddress" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="melks">
       <EntityTypeMapping TypeName="melkofilm_dbModel.melk">
         <MappingFragment StoreEntitySet="melk">
@@ -382,6 +354,35 @@
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="lat" ColumnName="lat" />
           <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="equipments">
+      <EntityTypeMapping TypeName="melkofilm_dbModel.equipment">
+        <MappingFragment StoreEntitySet="equipment">
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="adminComment" ColumnName="adminComment" />
+          <ScalarProperty Name="film" ColumnName="film" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="pexpireDate" ColumnName="pexpireDate" />
+          <ScalarProperty Name="apiToken" ColumnName="apiToken" />
+          <ScalarProperty Name="childEquipmentSubCategoriId" ColumnName="childEquipmentSubCategoriId" />
+          <ScalarProperty Name="equipmentSubCategoriId" ColumnName="equipmentSubCategoriId" />
+          <ScalarProperty Name="equipmentCategoriId" ColumnName="equipmentCategoriId" />
+          <ScalarProperty Name="subCityId" ColumnName="subCityId" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="lon" ColumnName="lon" />
+          <ScalarProperty Name="lat" ColumnName="lat" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="EquipmentAddress" ColumnName="EquipmentAddress" />
+          <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

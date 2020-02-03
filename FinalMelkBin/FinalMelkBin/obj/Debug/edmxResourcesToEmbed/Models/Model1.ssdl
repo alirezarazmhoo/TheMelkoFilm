@@ -47,6 +47,7 @@
     <Property Name="userId" Type="int" />
     <Property Name="film" Type="nvarchar" MaxLength="100" />
     <Property Name="adminComment" Type="nvarchar(max)" />
+    <Property Name="ExpireDate" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="equipmentCategori">
     <Key>

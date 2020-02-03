@@ -169,11 +169,26 @@ namespace FinalMelkBin.Controllers.api
 
         public object LoadOneMelk(int id)
         {
-            var result = Context.melks.Where(p => p.id == id).Select(p => new { p.id, p.ChildSubCategori.childSubCategoriName,p.userType, p.film, p.user.apiToken, p.user.fullName, p.lat, p.lon, p.ghabeleTabdilBarayeEjareh, p.ghabeleTabdilBarayeRahn, p.subCity.subCityname, p.imageUrl, p.SubCategori.subCategoriName, p.title, p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban, p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby, p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi, p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh, p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf, p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh, p.gheymateRahn, p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana, p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate, p.city.cityName, p.Categori.categoriName }).FirstOrDefault(x => x.id == id);
-
+			var thisTime = DateTime.Now;
+            var result = Context.melks.Where(p => p.id == id && p.expireDate >=thisTime
+			&& p.statusId ==1.ToString()).Select(p => new
+			{ p.id, p.ChildSubCategori.childSubCategoriName,p.userType, p.film,
+				p.user.apiToken, p.user.fullName, p.lat, p.lon, p.ghabeleTabdilBarayeEjareh,
+				p.ghabeleTabdilBarayeRahn, p.subCity.subCityname, p.imageUrl, p.SubCategori.subCategoriName,
+				p.title, p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban,
+				p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby,
+				p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi,
+				p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh,
+				p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf,
+				p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh, p.gheymateRahn,
+				p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana,
+				p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate,
+				p.city.cityName, p.Categori.categoriName }).FirstOrDefault(x => x.id == id);
             var images = Context.pictures.Where(p => p.melkId == id).Select(p => new { p.url }).ToList();
-
-
+			if(result == null)
+			{
+				images = null;
+			}
             return new { result, images };
         }
         [HttpGet]
@@ -931,7 +946,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchMelks(int subCatId, int page)
         {
-            var result = Context.melks.Where(x => x.subCategoriId == subCatId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.melks.Where(x => x.subCategoriId == subCatId && x.expireDate >= thisDate && x.statusId ==1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.ChildSubCategori.childSubCategoriName,p.userType, p.film, p.user.apiToken, p.user.fullName, p.lat, p.lon, p.ghabeleTabdilBarayeEjareh, p.ghabeleTabdilBarayeRahn, p.subCity.subCityname, p.imageUrl, p.SubCategori.subCategoriName, p.title, p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban, p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby, p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi, p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh, p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf, p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh, p.gheymateRahn, p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana, p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate, p.city.cityName, p.Categori.categoriName }).Take(10).ToList(), totalCount = result.Count() };
         }
         [HttpGet]
@@ -939,7 +955,9 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchMelksByCategoriId(int CategoriId, int page)
         {
-            var result = Context.melks.Where(x => x.categoriId == CategoriId).AsQueryable();
+			var thisDate = DateTime.Now;
+
+			var result = Context.melks.Where(x => x.categoriId == CategoriId && x.expireDate >= thisDate && x.statusId ==1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.ChildSubCategori.childSubCategoriName,p.userType, p.film, p.user.apiToken, p.user.fullName, p.lat, p.lon, p.ghabeleTabdilBarayeEjareh, p.ghabeleTabdilBarayeRahn, p.subCity.subCityname, p.imageUrl, p.SubCategori.subCategoriName, p.title, p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban, p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby, p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi, p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh, p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf, p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh, p.gheymateRahn, p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana, p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate, p.city.cityName, p.Categori.categoriName }).Take(10).ToList(), totalCount = result.Count() };
         }
         [HttpGet]
@@ -947,7 +965,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchMelksByCityId(int CityId, int page)
         {
-            var result = Context.melks.Where(x => x.cityId == CityId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.melks.Where(x => x.cityId == CityId && x.expireDate >= thisDate && x.statusId == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.ChildSubCategori.childSubCategoriName,p.userType, p.film, p.user.apiToken, p.user.fullName, p.lat, p.lon, p.ghabeleTabdilBarayeEjareh, p.ghabeleTabdilBarayeRahn, p.subCity.subCityname, p.imageUrl, p.SubCategori.subCategoriName, p.title, p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban, p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby, p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi, p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh, p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf, p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh, p.gheymateRahn, p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana, p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate, p.city.cityName, p.Categori.categoriName }).Take(10).ToList(), totalCount = result.Count() };
         }
         [HttpGet]
@@ -955,7 +974,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchMelksBySubCityId(int SubCityId, int page)
         {
-            var result = Context.melks.Where(x => x.subCityId == SubCityId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.melks.Where(x => x.subCityId == SubCityId && x.expireDate >= thisDate && x.statusId == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.ChildSubCategori.childSubCategoriName,p.userType, p.film, p.user.apiToken, p.user.fullName, p.lat, p.lon, p.ghabeleTabdilBarayeEjareh, p.ghabeleTabdilBarayeRahn, p.subCity.subCityname, p.imageUrl, p.SubCategori.subCategoriName, p.title, p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban, p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby, p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi, p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh, p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf, p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh, p.gheymateRahn, p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana, p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate, p.city.cityName, p.Categori.categoriName }).Take(10).ToList(), totalCount = result.Count() };
         }
         [HttpGet]
@@ -980,7 +1000,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchMelksByChildSubCatrgoriId(int ChildSubCategoriId, int page)
         {
-            var result = Context.melks.Where(x => x.childSubCategoriId == ChildSubCategoriId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.melks.Where(x => x.childSubCategoriId == ChildSubCategoriId && x.expireDate >= thisDate && x.statusId == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.ChildSubCategori.childSubCategoriName,p.userType, p.film, p.user.apiToken, p.user.fullName, p.lat, p.lon, p.ghabeleTabdilBarayeEjareh, p.ghabeleTabdilBarayeRahn, p.subCity.subCityname, p.imageUrl, p.SubCategori.subCategoriName, p.title, p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban, p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby, p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi, p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh, p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf, p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh, p.gheymateRahn, p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana, p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate, p.city.cityName, p.Categori.categoriName }).Take(10).ToList(), totalCount = result.Count() };
         }
 
@@ -989,6 +1010,7 @@ namespace FinalMelkBin.Controllers.api
         [Route("api/Home/SearchMelkNearest")]
         public object SearchMelkNearest()
         {
+			var thisDate = DateTime.Now;
             double lon = Convert.ToDouble(HttpContext.Current.Request.Form["lon"]);
             double lat = Convert.ToDouble(HttpContext.Current.Request.Form["lat"]);
             int? subCategoriId = Convert.ToInt32(HttpContext.Current.Request.Form["subCategoriId"]);
@@ -1019,9 +1041,9 @@ namespace FinalMelkBin.Controllers.api
                          let calMiles = (constValue2 * SqlFunctions.Acos(temp > 1 ? 1 : (temp < -1 ? -1 : temp)))
                          where (l.lat > 0 && l.lon > 0)
                          orderby calMiles descending
-                         select new { l.subCategoriId, l.id, l.title, l.lon, l.lat, l.subCityId, l.childSubCategoriId,l.categoriId, l.address, l.imageUrl,l.gheymateEjareh,l.gheymateForoosh,l.gheymateRahn,l.zirbana });
+                         select new { l.subCategoriId, l.id, l.title, l.lon, l.lat, l.subCityId, l.childSubCategoriId,l.categoriId, l.address, l.imageUrl,l.gheymateEjareh,l.gheymateForoosh,l.gheymateRahn,l.zirbana,l.statusId,l.expireDate });
             if (subCategoriId != 0)
-                Pmelk = Pmelk.Where(x => x.subCategoriId == subCategoriId);
+                Pmelk = Pmelk.Where(x => x.subCategoriId == subCategoriId &&  x.expireDate >= thisDate && x.statusId == 1.ToString());
             return new { Data = Pmelk.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.subCategoriId, x.childSubCategoriId,x.id, x.title,x.lon, x.lat, x.subCityId, x.categoriId, x.address, x.imageUrl,x.zirbana,x.gheymateRahn,x.gheymateForoosh,x.gheymateEjareh }), totalCount = Pmelk.Count() };
         }
 
@@ -1035,7 +1057,7 @@ namespace FinalMelkBin.Controllers.api
             double lat = Convert.ToDouble(HttpContext.Current.Request.Form["lat"]);
             //int? equipmentSubCategoriId = Convert.ToInt32(HttpContext.Current.Request.Form["equipmentSubCategoriId"]);
             int page = Convert.ToInt32(HttpContext.Current.Request.Form["page"]);
-
+			var thisDate = DateTime.Now;
             if (page == 0)
                 page = 1;
 
@@ -1062,10 +1084,10 @@ namespace FinalMelkBin.Controllers.api
                         let calMiles = (constValue2 * SqlFunctions.Acos(temp > 1 ? 1 : (temp < -1 ? -1 : temp)))
                         where (l.lat > 0 && l.lon > 0)
                         orderby calMiles descending
-                        select new { l.categoriId, l.childSubCategoriId,l.id, l.title, l.lon, l.lat, l.subCityId, l.subCategoriId, l.imageUrl });
+                        select new { l.categoriId, l.childSubCategoriId,l.id, l.title, l.lon, l.lat, l.subCityId, l.subCategoriId, l.imageUrl ,l.expireDate,l.statusId});
             //if (equipmentSubCategoriId != 0)
             //PEquipment = PEquipment.Select(p=>p.id).ToList();
-            return new { Data = PMelk.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.subCategoriId, x.childSubCategoriId,x.id, x.title, x.lon, x.lat, x.subCityId, x.categoriId, x.imageUrl }), totalCount = PMelk.Count() };
+            return new { Data = PMelk.Where(s=>s.statusId ==1.ToString() && s.expireDate >= thisDate ).OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.subCategoriId, x.childSubCategoriId,x.id, x.title, x.lon, x.lat, x.subCityId, x.categoriId, x.imageUrl }), totalCount = PMelk.Count() };
         }
 
         [HttpPost]
@@ -1073,10 +1095,10 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchMelkByTitle(int page)
         {
-
+			var thisDate = DateTime.Now;
 
             var description = Convert.ToString(HttpContext.Current.Request.Form["description"]);
-            var result = Context.melks.Where(x => x.title.Contains(description)).AsQueryable();
+            var result = Context.melks.Where(x => x.title.Contains(description) && x.expireDate >= thisDate && x.statusId == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.ChildSubCategori.childSubCategoriName,p.userType, p.film, p.user.apiToken, p.user.fullName, p.lat, p.lon, p.ghabeleTabdilBarayeEjareh, p.ghabeleTabdilBarayeRahn, p.subCity.subCityname, p.imageUrl, p.SubCategori.subCategoriName, p.title, p.telephone, p.mobile, p.address, p.tozihatTakmily, p.parking, p.isNegahban, p.isSystemGarmayeshiMarkazi, p.isKabinet, p.isHayat, p.isSalonEjtema, p.isLaby, p.isEstakhrVaSona, p.isSalonVarzeshi, p.isPentHouse, p.isFazayeSabz, p.IsDastshooyiFarangi, p.IsMaster, p.vaziyatSokoonat, p.mogheiyatJographiya, p.isDarbZedSerghat, p.kafpoosh, p.cooler, p.garmayeshi, p.isIphoneTasviry, p.isAntenMarkazi, p.divar, p.saghf, p.isKomodDivari, p.isPangerehDojedareh, p.typeDastebandi, p.gheymateForoosh, p.gheymateRahn, p.gheymateEjareh, p.melkType, p.sanad, p.sanadType, p.typeEskelet, p.zirbana, p.tedadTabaghat, p.tedadVahedDarTabaghe, p.tedadOtaghkhab, p.buildDate.pDate, p.city.cityName, p.Categori.categoriName }).Take(10).ToList(), totalCount = result.Count() };
 
         }
@@ -1387,11 +1409,6 @@ namespace FinalMelkBin.Controllers.api
 
 
         }
-
-
-
-
-
 
         [HttpPost]
         [Route("api/Home/UserInformations")]
@@ -1964,10 +1981,13 @@ namespace FinalMelkBin.Controllers.api
         [Route("api/Home/LoadOnejob/{id}")]
         public object LoadOnejob(int id)
         {
-            var LoadOneJob = Context.jobs.Where(p => p.id == id).Select(p => new { p.id, p.childjobSubCategori.childJobSubCategoriName,p.advertisementType, p.film,p.JobAddress,p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, p.tahsilat, p.jobCategori.namee, jobSubCategori = p.jobSubCategori.namee, JobCategori=p.jobCategori.namee,p.sharheVazayef, p.vazayefRoozaneVaHaftegiVaMahane, p.fullName, p.Mablagh,p.apiToken }).FirstOrDefault();
-
+			var thisDate = DateTime.Now;
+            var LoadOneJob = Context.jobs.Where(p => p.id == id && p.ExpireDate >= thisDate && p.status == 1.ToString()).Select(p => new { p.id, p.childjobSubCategori.childJobSubCategoriName,p.advertisementType, p.film,p.JobAddress,p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, p.tahsilat, p.jobCategori.namee, jobSubCategori = p.jobSubCategori.namee, JobCategori=p.jobCategori.namee,p.sharheVazayef, p.vazayefRoozaneVaHaftegiVaMahane, p.fullName, p.Mablagh,p.apiToken }).FirstOrDefault();
             var images = Context.jobPictures.Where(p => p.jobId == id).Select(p => p.url).ToList();
-
+			if(LoadOneJob == null)
+			{
+				images = null;
+			}
             return new { LoadOneJob, images };
         }
         //حذف یک شغل
@@ -2234,7 +2254,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchJobByCityId(int CityId, int page)
         {
-            var result = Context.jobs.Where(x => x.cityId == CityId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.jobs.Where(x => x.cityId == CityId && x.ExpireDate >=thisDate &&x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childjobSubCategori.childJobSubCategoriName,p.film, p.JobAddress,p.advertisementType, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, p.tahsilat, p.jobCategori.namee, jobSubCategori = p.jobSubCategori.namee, p.sharheVazayef, p.vazayefRoozaneVaHaftegiVaMahane, p.fullName, p.Mablagh }).Take(10).ToList(), totalCount = result.Count() };
         }
         //جستجوی شغل با شهرستان
@@ -2243,7 +2264,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchJobBySubCityId(int SubCityId, int page)
         {
-            var result = Context.jobs.Where(x => x.subCityId == SubCityId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.jobs.Where(x => x.subCityId == SubCityId && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childjobSubCategori.childJobSubCategoriName,p.film, p.JobAddress,p.advertisementType, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, p.tahsilat, p.jobCategori.namee, jobSubCategori = p.jobSubCategori.namee, p.sharheVazayef, p.vazayefRoozaneVaHaftegiVaMahane,  p.fullName, p.Mablagh }).Take(10).ToList(), totalCount = result.Count() };
         }
         //جستجوی شغل با دسته بندی
@@ -2252,7 +2274,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchJobByCategoriId(int CategoriId, int page)
         {
-            var result = Context.jobs.Where(x => x.jobCategoriId == CategoriId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.jobs.Where(x => x.jobCategoriId == CategoriId && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childjobSubCategori.childJobSubCategoriName,p.film, p.JobAddress, p.advertisementType, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, p.tahsilat, p.jobCategori.namee, jobSubCategori = p.jobSubCategori.namee, p.sharheVazayef, p.vazayefRoozaneVaHaftegiVaMahane,  p.fullName, p.Mablagh }).Take(10).ToList(), totalCount = result.Count() };
         }
         //جستجوی شغل با زیردسته بندی
@@ -2261,7 +2284,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchJobBySubCategoriId(int jobSubCategoriId, int page)
         {
-            var result = Context.jobs.Where(x => x.jobSubCategoriId == jobSubCategoriId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.jobs.Where(x => x.jobSubCategoriId == jobSubCategoriId && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.film, p.childjobSubCategori.childJobSubCategoriName,p.JobAddress, p.advertisementType, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, p.tahsilat, p.jobCategori.namee, jobSubCategori = p.jobSubCategori.namee, p.sharheVazayef, p.vazayefRoozaneVaHaftegiVaMahane,p.fullName, p.Mablagh }).Take(10).ToList(), totalCount = result.Count() };
         }
 
@@ -2271,7 +2295,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchJobByChildSubCategoriId(int ChildjobSubCategoriId, int page)
         {
-            var result = Context.jobs.Where(x => x.childjobSubCategoriId == ChildjobSubCategoriId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.jobs.Where(x => x.childjobSubCategoriId == ChildjobSubCategoriId && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.film, p.childjobSubCategori.childJobSubCategoriName,p.JobAddress, p.advertisementType, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, p.tahsilat, p.jobCategori.namee, jobSubCategori = p.jobSubCategori.namee, p.sharheVazayef, p.vazayefRoozaneVaHaftegiVaMahane, p.fullName, p.Mablagh }).Take(10).ToList(), totalCount = result.Count() };
         }
 
@@ -2282,7 +2307,7 @@ namespace FinalMelkBin.Controllers.api
         [Route("api/Home/SearchJobNearest")]
         public object SearchJobNearest()
         {
-
+			var thisDate = DateTime.Now;
             double lon = Convert.ToDouble(HttpContext.Current.Request.Form["lon"]);
             double lat = Convert.ToDouble(HttpContext.Current.Request.Form["lat"]);
             int? jobSubCategoriId = Convert.ToInt32(HttpContext.Current.Request.Form["jobSubCategoriId"]);
@@ -2312,9 +2337,9 @@ namespace FinalMelkBin.Controllers.api
                         let calMiles = (constValue2 * SqlFunctions.Acos(temp > 1 ? 1 : (temp < -1 ? -1 : temp)))
                         where (l.lat > 0 && l.lon > 0)
                         orderby calMiles descending
-                        select new { l.jobSubCategoriId, l.id, l.childjobSubCategoriId,l.title, l.lon, l.lat, l.subCityId, l.jobCategoriId, l.imageUrl,l.JobAddress });
+                        select new { l.jobSubCategoriId, l.id, l.childjobSubCategoriId,l.status,l.ExpireDate,l.title, l.lon, l.lat, l.subCityId, l.jobCategoriId, l.imageUrl,l.JobAddress });
             if (jobSubCategoriId != 0)
-                Pjob = Pjob.Where(x => x.jobSubCategoriId == jobSubCategoriId);
+                Pjob = Pjob.Where(x => x.jobSubCategoriId == jobSubCategoriId && x.status == 1.ToString() && x.ExpireDate >= thisDate);
             return new { Data = Pjob.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.jobSubCategoriId, x.childjobSubCategoriId,x.id, x.title, x.lon, x.lat, x.subCityId, x.jobCategoriId, x.imageUrl ,x.JobAddress}), totalCount = Pjob.Count() };
         }
 
@@ -2326,6 +2351,7 @@ namespace FinalMelkBin.Controllers.api
         [Route("api/Home/SearchAllJobsNearest")]
         public object SearchAllJobsNearest()
         {
+			var thisDate = DateTime.Now;
             double lon = Convert.ToDouble(HttpContext.Current.Request.Form["lon"]);
             double lat = Convert.ToDouble(HttpContext.Current.Request.Form["lat"]);
             //int? equipmentSubCategoriId = Convert.ToInt32(HttpContext.Current.Request.Form["equipmentSubCategoriId"]);
@@ -2357,20 +2383,20 @@ namespace FinalMelkBin.Controllers.api
                               let calMiles = (constValue2 * SqlFunctions.Acos(temp > 1 ? 1 : (temp < -1 ? -1 : temp)))
                               where (l.lat > 0 && l.lon > 0)
                               orderby calMiles descending
-                              select new { l.jobSubCategoriId, l.childjobSubCategoriId,l.id, l.title, l.lon, l.lat, l.subCityId, l.jobCategoriId, l.imageUrl ,l.JobAddress});
+                              select new { l.jobSubCategoriId, l.status,l.ExpireDate,l.childjobSubCategoriId,l.id, l.title, l.lon, l.lat, l.subCityId, l.jobCategoriId, l.imageUrl ,l.JobAddress});
             //if (equipmentSubCategoriId != 0)
             //PEquipment = PEquipment.Select(p=>p.id).ToList();
-            return new { Data = PJob.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.jobSubCategoriId, x.id, x.title, x.childjobSubCategoriId,x.lon, x.lat, x.subCityId, x.jobCategoriId, x.imageUrl,x.JobAddress }), totalCount = PJob.Count() };
+            return new { Data = PJob.Where(s=>s.status == 1.ToString() && s.ExpireDate >= thisDate).OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.jobSubCategoriId, x.id, x.title, x.childjobSubCategoriId,x.lon, x.lat, x.subCityId, x.jobCategoriId, x.imageUrl,x.JobAddress }), totalCount = PJob.Count() };
         }
         [HttpPost]
         [Route("api/Home/SearchJobByTitle/{page}")]
 
         public object SearchJobByTitle(int page)
         {
-
+			var thisDate = DateTime.Now;
 
             var description = Convert.ToString(HttpContext.Current.Request.Form["description"]);
-            var result = Context.jobs.Where(x => x.title.Contains(description)).AsQueryable();
+            var result = Context.jobs.Where(x => x.title.Contains(description) && x.status==1.ToString() && x.ExpireDate >= thisDate).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childjobSubCategori.childJobSubCategoriName,p.advertisementType, p.JobAddress, p.film, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, p.tahsilat, p.jobCategori.namee, jobSubCategori = p.jobSubCategori.namee, p.sharheVazayef, p.vazayefRoozaneVaHaftegiVaMahane, p.fullName, p.Mablagh }).Take(10).ToList(), totalCount = result.Count() };
 
         }
@@ -2831,8 +2857,6 @@ namespace FinalMelkBin.Controllers.api
         }
 
 
-
-
         //از اینجا به بعد مربوط به لوازم دسته دوم است
         //فاز سوم
 
@@ -2854,9 +2878,6 @@ namespace FinalMelkBin.Controllers.api
             var result = Context.equipmentSubCategoris.Where(p => p.equipmentCategoriId == id).Select(x => new { x.id, x.namee }).ToList();
             return result;
         }
-
-
-
         //اطلاعات زیرگروه دوم  لوازم بر اساس ای دی گروه
         [HttpGet]
         [Route("api/Home/LoadChildEquipmentSubCategori/{idEquipmentSubCategori}")]
@@ -3141,10 +3162,14 @@ namespace FinalMelkBin.Controllers.api
         [Route("api/Home/LoadOneequipment/{id}")]
         public object LoadOneequipment(int id)
         {
+			var thisDate = DateTime.Now;
             //var LoadOneEquipment = Context.equipments.Include("subCity").Include("city").Include("equipmentCategori").Include("equipmentSubCategori").Where(p => p.id == id).Select(p => new { p.id, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname,Categori=p.equipmentCategori.namee,SubCategori=p.equipmentSubCategori.namee ,p.price,p.description,p.pexpireDate,p.userId}).ToList();
-            var LoadOneEquipment = Context.equipments.Where(p => p.id == id).Select(p => new { p.id,p.equipmetUser.fullName,p.childSubEquipmentCategori.childSubEquipmentCategoriName,p.film, p.EquipmentAddress,p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, Categori = p.equipmentCategori.namee, SubCategori = p.equipmentSubCategori.namee, p.price, p.description, p.pexpireDate, p.userId,p.apiToken }).FirstOrDefault();
-
+            var LoadOneEquipment = Context.equipments.Where(p => p.id == id && p.ExpireDate >= thisDate && p.status == 1.ToString()).Select(p => new { p.id,p.equipmetUser.fullName,p.childSubEquipmentCategori.childSubEquipmentCategoriName,p.film, p.EquipmentAddress,p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, Categori = p.equipmentCategori.namee, SubCategori = p.equipmentSubCategori.namee, p.price, p.description, p.pexpireDate, p.userId,p.apiToken }).FirstOrDefault();
             var pic = Context.equipmentPictures.Where(p => p.equipmentId == id).Select(p => new { p.url, p.id }).ToList();
+			if(LoadOneEquipment == null)
+			{
+				pic = null;
+			}
 
             return new { Data = LoadOneEquipment,  pic };
             //return  LoadOneEquipment;
@@ -3393,7 +3418,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchEquipmentByCityId(int CityId, int page)
         {
-            var result = Context.equipments.Where(x => x.cityId == CityId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.equipments.Where(x => x.cityId == CityId && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childSubEquipmentCategori.childSubEquipmentCategoriName,p.film, p.EquipmentAddress,p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, Categori = p.equipmentCategori.namee, SubCategori = p.equipmentSubCategori.namee, p.price, p.description, p.pexpireDate, p.userId }).Take(10).ToList(), totalCount = result.Count() };
         }
         //جستجوی وسیله با شهرستان
@@ -3402,7 +3428,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchEquipmentBySubCityId(int SubCityId, int page)
         {
-            var result = Context.equipments.Where(x => x.subCityId == SubCityId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.equipments.Where(x => x.subCityId == SubCityId && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childSubEquipmentCategori.childSubEquipmentCategoriName,p.film, p.EquipmentAddress, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, Categori = p.equipmentCategori.namee, SubCategori = p.equipmentSubCategori.namee, p.price, p.description, p.pexpireDate, p.userId }).Take(10).ToList(), totalCount = result.Count() };
         }
         //جستجوی وسیله با دسته بندی
@@ -3411,7 +3438,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchEquipmentByCategoriId(int CategoriId, int page)
         {
-            var result = Context.equipments.Where(x => x.equipmentCategoriId == CategoriId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.equipments.Where(x => x.equipmentCategoriId == CategoriId &&x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childSubEquipmentCategori.childSubEquipmentCategoriName,p.film, p.EquipmentAddress, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, Categori = p.equipmentCategori.namee, SubCategori = p.equipmentSubCategori.namee, p.price, p.description, p.pexpireDate, p.userId }).Take(10).ToList(), totalCount = result.Count() };
         }
         //جستجوی وسیله با زیردسته بندی
@@ -3420,7 +3448,8 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchEquipmentBySubCategoriId(int jobSubCategoriId, int page)
         {
-            var result = Context.equipments.Where(x => x.equipmentSubCategoriId == jobSubCategoriId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.equipments.Where(x => x.equipmentSubCategoriId == jobSubCategoriId && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childSubEquipmentCategori.childSubEquipmentCategoriName,p.film, p.EquipmentAddress, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, Categori = p.equipmentCategori.namee, SubCategori = p.equipmentSubCategori.namee, p.price, p.description, p.pexpireDate, p.userId }).Take(10).ToList(), totalCount = result.Count() };
         }
 
@@ -3431,19 +3460,16 @@ namespace FinalMelkBin.Controllers.api
 
         public object SearchEquipmentByChildSubCategoriId(int ChildEquipentSubCategoriId, int page)
         {
-            var result = Context.equipments.Where(x => x.childEquipmentSubCategoriId == ChildEquipentSubCategoriId).AsQueryable();
+			var thisDate = DateTime.Now;
+            var result = Context.equipments.Where(x => x.childEquipmentSubCategoriId == ChildEquipentSubCategoriId && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.film, p.childSubEquipmentCategori.childSubEquipmentCategoriName,p.EquipmentAddress, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, Categori = p.equipmentCategori.namee, SubCategori = p.equipmentSubCategori.namee, p.price, p.description, p.pexpireDate, p.userId }).Take(10).ToList(), totalCount = result.Count() };
         }
-
-
-
-
-
         //جستجوی وسیله بر اساس نزدیک ترین ها
         [HttpPost]
         [Route("api/Home/SearchEquipmentNearest")]
         public object SearchEquipmentNearest()
         {
+			var thisDate = DateTime.Now;
             double lon = Convert.ToDouble(HttpContext.Current.Request.Form["lon"]);
             double lat = Convert.ToDouble(HttpContext.Current.Request.Form["lat"]);
             int? equipmentSubCategoriId = Convert.ToInt32(HttpContext.Current.Request.Form["equipmentSubCategoriId"]);
@@ -3475,19 +3501,18 @@ namespace FinalMelkBin.Controllers.api
                         let calMiles = (constValue2 * SqlFunctions.Acos(temp > 1 ? 1 : (temp < -1 ? -1 : temp)))
                         where (l.lat > 0 && l.lon > 0)
                         orderby calMiles descending
-                        select new { l.equipmentCategoriId, l.childEquipmentSubCategoriId,l.id, l.title, l.lon, l.lat, l.subCityId, l.equipmentSubCategoriId, l.imageUrl,l.EquipmentAddress });
+                        select new { l.equipmentCategoriId, l.childEquipmentSubCategoriId,l.ExpireDate,l.status,l.id, l.title, l.lon, l.lat, l.subCityId, l.equipmentSubCategoriId, l.imageUrl,l.EquipmentAddress });
             if (equipmentSubCategoriId != 0)
-                Pjob = Pjob.Where(x => x.equipmentSubCategoriId == equipmentSubCategoriId);
+                Pjob = Pjob.Where(x => x.equipmentSubCategoriId == equipmentSubCategoriId && x.ExpireDate >= thisDate && x.status == 1.ToString());
             return new { Data = Pjob.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.equipmentSubCategoriId, x.childEquipmentSubCategoriId,x.EquipmentAddress,x.id, x.title, x.lon, x.lat, x.subCityId, x.equipmentCategoriId, x.imageUrl }), totalCount = Pjob.Count() };
         }
-
-
         //جستجوی همه وسیله ها روی نقشه 
 
         [HttpPost]
         [Route("api/Home/SearchAllEquipmentNearest")]
         public object SearchAllEquipmentNearest()
         {
+			var thisDate = DateTime.Now;
             double lon = Convert.ToDouble(HttpContext.Current.Request.Form["lon"]);
             double lat = Convert.ToDouble(HttpContext.Current.Request.Form["lat"]);
             //int? equipmentSubCategoriId = Convert.ToInt32(HttpContext.Current.Request.Form["equipmentSubCategoriId"]);
@@ -3519,25 +3544,20 @@ namespace FinalMelkBin.Controllers.api
                               let calMiles = (constValue2 * SqlFunctions.Acos(temp > 1 ? 1 : (temp < -1 ? -1 : temp)))
                               where (l.lat > 0 && l.lon > 0)
                               orderby calMiles descending
-                              select new { l.equipmentCategoriId, l.childEquipmentSubCategoriId,l.id, l.title, l.lon, l.lat, l.subCityId, l.equipmentSubCategoriId, l.imageUrl,l.EquipmentAddress });
+                              select new { l.equipmentCategoriId, l.ExpireDate,l.status,l.childEquipmentSubCategoriId,l.id, l.title, l.lon, l.lat, l.subCityId, l.equipmentSubCategoriId, l.imageUrl,l.EquipmentAddress });
             //if (equipmentSubCategoriId != 0)
             //PEquipment = PEquipment.Select(p=>p.id).ToList();
-            return new { Data = PEquipment.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.equipmentSubCategoriId, x.childEquipmentSubCategoriId,x.EquipmentAddress,x.id, x.title, x.lon, x.lat, x.subCityId, x.equipmentCategoriId, x.imageUrl }), totalCount = PEquipment.Count() };
+            return new { Data = PEquipment.Where(x =>  x.ExpireDate >= thisDate && x.status == 1.ToString()).OrderByDescending(x => x.id).Skip(10 * (page - 1)).Take(10).Select(x => new { x.equipmentSubCategoriId, x.childEquipmentSubCategoriId,x.EquipmentAddress,x.id, x.title, x.lon, x.lat, x.subCityId, x.equipmentCategoriId, x.imageUrl }), totalCount = PEquipment.Count() };
         }
-
-
-
-
-
         [HttpPost]
         [Route("api/Home/SearchEquipmentByTitle/{page}")]
 
         public object SearchEquipmentByTitle(int page)
         {
 
-
+			var thisDate = DateTime.Now;
             var description = Convert.ToString(HttpContext.Current.Request.Form["description"]);
-            var result = Context.equipments.Where(x => x.title.Contains(description)).AsQueryable();
+            var result = Context.equipments.Where(x => x.title.Contains(description) && x.ExpireDate >= thisDate && x.status == 1.ToString()).AsQueryable();
             return new { Data = result.OrderByDescending(x => x.id).Skip(10 * (page - 1)).Select(p => new { p.id, p.childSubEquipmentCategori.childSubEquipmentCategoriName,p.film, p.EquipmentAddress, p.userType, p.lon, p.lat, p.imageUrl, p.title, p.mobile, p.email, p.city.cityName, p.subCity.subCityname, Categori = p.equipmentCategori.namee, SubCategori = p.equipmentSubCategori.namee, p.price, p.description, p.pexpireDate, p.userId }).Take(10).ToList(), totalCount = result.Count() };
 
         }
@@ -4497,10 +4517,6 @@ namespace FinalMelkBin.Controllers.api
             }
 
         }
-
-
-
-
         //پایان
     }
 }
