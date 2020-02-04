@@ -24,9 +24,9 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="cityName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="subCities" Relationship="Self.FK_subCity_city" FromRole="city" ToRole="subCity" />
-    <NavigationProperty Name="equipments" Relationship="melkofilm_dbModel.FK_equipment_city" FromRole="city" ToRole="equipment" />
-    <NavigationProperty Name="jobs" Relationship="melkofilm_dbModel.FK_job_city" FromRole="city" ToRole="job" />
     <NavigationProperty Name="melks" Relationship="melkofilm_dbModel.FK_melk_city" FromRole="city" ToRole="melk" />
+    <NavigationProperty Name="jobs" Relationship="melkofilm_dbModel.FK_job_city" FromRole="city" ToRole="job" />
+    <NavigationProperty Name="equipments" Relationship="melkofilm_dbModel.FK_equipment_city" FromRole="city" ToRole="equipment" />
   </EntityType>
   <EntityType Name="equipmentCategori">
     <Key>
@@ -189,9 +189,9 @@
     <Property Name="subCityname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="cityId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="city" Relationship="Self.FK_subCity_city" FromRole="subCity" ToRole="city" />
-    <NavigationProperty Name="equipments" Relationship="melkofilm_dbModel.FK_equipment_subCity" FromRole="subCity" ToRole="equipment" />
-    <NavigationProperty Name="jobs" Relationship="melkofilm_dbModel.FK_job_subCity" FromRole="subCity" ToRole="job" />
     <NavigationProperty Name="melks" Relationship="melkofilm_dbModel.FK_melk_subCity" FromRole="subCity" ToRole="melk" />
+    <NavigationProperty Name="jobs" Relationship="melkofilm_dbModel.FK_job_subCity" FromRole="subCity" ToRole="job" />
+    <NavigationProperty Name="equipments" Relationship="melkofilm_dbModel.FK_equipment_subCity" FromRole="subCity" ToRole="equipment" />
   </EntityType>
   <Association Name="FK_SubCategori_Categori">
     <End Role="Categori" Type="Self.Categori" Multiplicity="1">
@@ -309,72 +309,6 @@
       <End Role="SubCategori" EntitySet="SubCategoris" />
       <End Role="ChildSubCategori" EntitySet="ChildSubCategoris" />
     </AssociationSet>
-    <EntitySet Name="equipments" EntityType="melkofilm_dbModel.equipment" />
-    <AssociationSet Name="FK_equipment_city" Association="melkofilm_dbModel.FK_equipment_city">
-      <End Role="city" EntitySet="cities" />
-      <End Role="equipment" EntitySet="equipments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_equipment_childSubEquipmentCategori" Association="melkofilm_dbModel.FK_equipment_childSubEquipmentCategori">
-      <End Role="childSubEquipmentCategori" EntitySet="childSubEquipmentCategoris" />
-      <End Role="equipment" EntitySet="equipments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_equipment_equipmentCategori" Association="melkofilm_dbModel.FK_equipment_equipmentCategori">
-      <End Role="equipmentCategori" EntitySet="equipmentCategoris" />
-      <End Role="equipment" EntitySet="equipments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_equipment_equipmentSubCategori" Association="melkofilm_dbModel.FK_equipment_equipmentSubCategori">
-      <End Role="equipmentSubCategori" EntitySet="equipmentSubCategoris" />
-      <End Role="equipment" EntitySet="equipments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_equipment_equipmetUser" Association="melkofilm_dbModel.FK_equipment_equipmetUser">
-      <End Role="equipmetUser" EntitySet="equipmetUsers" />
-      <End Role="equipment" EntitySet="equipments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_equipment_subCity" Association="melkofilm_dbModel.FK_equipment_subCity">
-      <End Role="subCity" EntitySet="subCities" />
-      <End Role="equipment" EntitySet="equipments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_equipmentPictures_equipment" Association="melkofilm_dbModel.FK_equipmentPictures_equipment">
-      <End Role="equipment" EntitySet="equipments" />
-      <End Role="equipmentPicture" EntitySet="equipmentPictures" />
-    </AssociationSet>
-    <AssociationSet Name="FK_equipmetAcceptUser_equipment" Association="melkofilm_dbModel.FK_equipmetAcceptUser_equipment">
-      <End Role="equipment" EntitySet="equipments" />
-      <End Role="equipmetAcceptUser" EntitySet="equipmetAcceptUsers" />
-    </AssociationSet>
-    <EntitySet Name="jobs" EntityType="melkofilm_dbModel.job" />
-    <AssociationSet Name="FK_job_city" Association="melkofilm_dbModel.FK_job_city">
-      <End Role="city" EntitySet="cities" />
-      <End Role="job" EntitySet="jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_job_childjobSubCategori" Association="melkofilm_dbModel.FK_job_childjobSubCategori">
-      <End Role="childjobSubCategori" EntitySet="childjobSubCategoris" />
-      <End Role="job" EntitySet="jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_job_jobCategori" Association="melkofilm_dbModel.FK_job_jobCategori">
-      <End Role="jobCategori" EntitySet="jobCategoris" />
-      <End Role="job" EntitySet="jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_job_jobSubCategori" Association="melkofilm_dbModel.FK_job_jobSubCategori">
-      <End Role="jobSubCategori" EntitySet="jobSubCategoris" />
-      <End Role="job" EntitySet="jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_job_jobUser1" Association="melkofilm_dbModel.FK_job_jobUser1">
-      <End Role="jobUser" EntitySet="jobUsers" />
-      <End Role="job" EntitySet="jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_job_subCity" Association="melkofilm_dbModel.FK_job_subCity">
-      <End Role="subCity" EntitySet="subCities" />
-      <End Role="job" EntitySet="jobs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_jobAcceptUser_job" Association="melkofilm_dbModel.FK_jobAcceptUser_job">
-      <End Role="job" EntitySet="jobs" />
-      <End Role="jobAcceptUser" EntitySet="jobAcceptUsers" />
-    </AssociationSet>
-    <AssociationSet Name="FK_jobPicture_job" Association="melkofilm_dbModel.FK_jobPicture_job">
-      <End Role="job" EntitySet="jobs" />
-      <End Role="jobPicture" EntitySet="jobPictures" />
-    </AssociationSet>
     <EntitySet Name="melks" EntityType="melkofilm_dbModel.melk" />
     <AssociationSet Name="FK_melk_buildDate" Association="melkofilm_dbModel.FK_melk_buildDate">
       <End Role="buildDate" EntitySet="buildDates" />
@@ -416,6 +350,72 @@
     <AssociationSet Name="FK_user_roll" Association="melkofilm_dbModel.FK_user_roll">
       <End Role="roll" EntitySet="rolls" />
       <End Role="user" EntitySet="users" />
+    </AssociationSet>
+    <EntitySet Name="jobs" EntityType="melkofilm_dbModel.job" />
+    <AssociationSet Name="FK_job_city" Association="melkofilm_dbModel.FK_job_city">
+      <End Role="city" EntitySet="cities" />
+      <End Role="job" EntitySet="jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_childjobSubCategori" Association="melkofilm_dbModel.FK_job_childjobSubCategori">
+      <End Role="childjobSubCategori" EntitySet="childjobSubCategoris" />
+      <End Role="job" EntitySet="jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_jobCategori" Association="melkofilm_dbModel.FK_job_jobCategori">
+      <End Role="jobCategori" EntitySet="jobCategoris" />
+      <End Role="job" EntitySet="jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_jobSubCategori" Association="melkofilm_dbModel.FK_job_jobSubCategori">
+      <End Role="jobSubCategori" EntitySet="jobSubCategoris" />
+      <End Role="job" EntitySet="jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_jobUser1" Association="melkofilm_dbModel.FK_job_jobUser1">
+      <End Role="jobUser" EntitySet="jobUsers" />
+      <End Role="job" EntitySet="jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_job_subCity" Association="melkofilm_dbModel.FK_job_subCity">
+      <End Role="subCity" EntitySet="subCities" />
+      <End Role="job" EntitySet="jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jobAcceptUser_job" Association="melkofilm_dbModel.FK_jobAcceptUser_job">
+      <End Role="job" EntitySet="jobs" />
+      <End Role="jobAcceptUser" EntitySet="jobAcceptUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jobPicture_job" Association="melkofilm_dbModel.FK_jobPicture_job">
+      <End Role="job" EntitySet="jobs" />
+      <End Role="jobPicture" EntitySet="jobPictures" />
+    </AssociationSet>
+    <EntitySet Name="equipments" EntityType="melkofilm_dbModel.equipment" />
+    <AssociationSet Name="FK_equipment_city" Association="melkofilm_dbModel.FK_equipment_city">
+      <End Role="city" EntitySet="cities" />
+      <End Role="equipment" EntitySet="equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_childSubEquipmentCategori" Association="melkofilm_dbModel.FK_equipment_childSubEquipmentCategori">
+      <End Role="childSubEquipmentCategori" EntitySet="childSubEquipmentCategoris" />
+      <End Role="equipment" EntitySet="equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_equipmentCategori" Association="melkofilm_dbModel.FK_equipment_equipmentCategori">
+      <End Role="equipmentCategori" EntitySet="equipmentCategoris" />
+      <End Role="equipment" EntitySet="equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_equipmentSubCategori" Association="melkofilm_dbModel.FK_equipment_equipmentSubCategori">
+      <End Role="equipmentSubCategori" EntitySet="equipmentSubCategoris" />
+      <End Role="equipment" EntitySet="equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_equipmetUser" Association="melkofilm_dbModel.FK_equipment_equipmetUser">
+      <End Role="equipmetUser" EntitySet="equipmetUsers" />
+      <End Role="equipment" EntitySet="equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipment_subCity" Association="melkofilm_dbModel.FK_equipment_subCity">
+      <End Role="subCity" EntitySet="subCities" />
+      <End Role="equipment" EntitySet="equipments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipmentPictures_equipment" Association="melkofilm_dbModel.FK_equipmentPictures_equipment">
+      <End Role="equipment" EntitySet="equipments" />
+      <End Role="equipmentPicture" EntitySet="equipmentPictures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_equipmetAcceptUser_equipment" Association="melkofilm_dbModel.FK_equipmetAcceptUser_equipment">
+      <End Role="equipment" EntitySet="equipments" />
+      <End Role="equipmetAcceptUser" EntitySet="equipmetAcceptUsers" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="AdminUser">
@@ -528,286 +528,6 @@
       </Principal>
       <Dependent Role="ChildSubCategori">
         <PropertyRef Name="subCategoriId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="equipment">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="EquipmentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="price" Type="Int32" />
-    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="lat" Type="Double" />
-    <Property Name="lon" Type="Double" />
-    <Property Name="mobile" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-    <Property Name="imageUrl" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
-    <Property Name="cityId" Type="Int32" />
-    <Property Name="subCityId" Type="Int32" />
-    <Property Name="equipmentCategoriId" Type="Int32" />
-    <Property Name="equipmentSubCategoriId" Type="Int32" />
-    <Property Name="childEquipmentSubCategoriId" Type="Int32" />
-    <Property Name="apiToken" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="pexpireDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="userType" Type="Byte" />
-    <Property Name="userId" Type="Int32" />
-    <Property Name="film" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="adminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="city" Relationship="melkofilm_dbModel.FK_equipment_city" FromRole="equipment" ToRole="city" />
-    <NavigationProperty Name="childSubEquipmentCategori" Relationship="melkofilm_dbModel.FK_equipment_childSubEquipmentCategori" FromRole="equipment" ToRole="childSubEquipmentCategori" />
-    <NavigationProperty Name="equipmentCategori" Relationship="melkofilm_dbModel.FK_equipment_equipmentCategori" FromRole="equipment" ToRole="equipmentCategori" />
-    <NavigationProperty Name="equipmentSubCategori" Relationship="melkofilm_dbModel.FK_equipment_equipmentSubCategori" FromRole="equipment" ToRole="equipmentSubCategori" />
-    <NavigationProperty Name="equipmetUser" Relationship="melkofilm_dbModel.FK_equipment_equipmetUser" FromRole="equipment" ToRole="equipmetUser" />
-    <NavigationProperty Name="subCity" Relationship="melkofilm_dbModel.FK_equipment_subCity" FromRole="equipment" ToRole="subCity" />
-    <NavigationProperty Name="equipmentPictures" Relationship="melkofilm_dbModel.FK_equipmentPictures_equipment" FromRole="equipment" ToRole="equipmentPicture" />
-    <NavigationProperty Name="equipmetAcceptUsers" Relationship="melkofilm_dbModel.FK_equipmetAcceptUser_equipment" FromRole="equipment" ToRole="equipmetAcceptUser" />
-  </EntityType>
-  <Association Name="FK_equipment_city">
-    <End Type="melkofilm_dbModel.city" Role="city" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="city">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="equipment">
-        <PropertyRef Name="cityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_equipment_childSubEquipmentCategori">
-    <End Type="melkofilm_dbModel.childSubEquipmentCategori" Role="childSubEquipmentCategori" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="childSubEquipmentCategori">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="equipment">
-        <PropertyRef Name="childEquipmentSubCategoriId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_equipment_equipmentCategori">
-    <End Type="melkofilm_dbModel.equipmentCategori" Role="equipmentCategori" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="equipmentCategori">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="equipment">
-        <PropertyRef Name="equipmentCategoriId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_equipment_equipmentSubCategori">
-    <End Type="melkofilm_dbModel.equipmentSubCategori" Role="equipmentSubCategori" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="equipmentSubCategori">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="equipment">
-        <PropertyRef Name="equipmentSubCategoriId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_equipment_equipmetUser">
-    <End Type="melkofilm_dbModel.equipmetUser" Role="equipmetUser" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="equipmetUser">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="equipment">
-        <PropertyRef Name="userId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_equipment_subCity">
-    <End Type="melkofilm_dbModel.subCity" Role="subCity" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="subCity">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="equipment">
-        <PropertyRef Name="subCityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_equipmentPictures_equipment">
-    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="melkofilm_dbModel.equipmentPicture" Role="equipmentPicture" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="equipment">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="equipmentPicture">
-        <PropertyRef Name="equipmentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_equipmetAcceptUser_equipment">
-    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="melkofilm_dbModel.equipmetAcceptUser" Role="equipmetAcceptUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="equipment">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="equipmetAcceptUser">
-        <PropertyRef Name="equipmentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="job">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="lon" Type="Double" />
-    <Property Name="lat" Type="Double" />
-    <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="JobAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="fullName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="mobile" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="cityId" Type="Int32" />
-    <Property Name="subCityId" Type="Int32" />
-    <Property Name="tahsilat" Type="Byte" />
-    <Property Name="otherMaharat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="sabeghe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="jobCategoriId" Type="Int32" />
-    <Property Name="jobSubCategoriId" Type="Int32" />
-    <Property Name="childjobSubCategoriId" Type="Int32" />
-    <Property Name="sharheVazayef" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="vazayefRoozaneVaHaftegiVaMahane" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="film" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-    <Property Name="imageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="userId" Type="Int32" />
-    <Property Name="Mablagh" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="pExpire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="apiToken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="userType" Type="Byte" />
-    <Property Name="advertisementType" Type="Byte" />
-    <Property Name="adminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="city" Relationship="melkofilm_dbModel.FK_job_city" FromRole="job" ToRole="city" />
-    <NavigationProperty Name="childjobSubCategori" Relationship="melkofilm_dbModel.FK_job_childjobSubCategori" FromRole="job" ToRole="childjobSubCategori" />
-    <NavigationProperty Name="jobCategori" Relationship="melkofilm_dbModel.FK_job_jobCategori" FromRole="job" ToRole="jobCategori" />
-    <NavigationProperty Name="jobSubCategori" Relationship="melkofilm_dbModel.FK_job_jobSubCategori" FromRole="job" ToRole="jobSubCategori" />
-    <NavigationProperty Name="jobUser" Relationship="melkofilm_dbModel.FK_job_jobUser1" FromRole="job" ToRole="jobUser" />
-    <NavigationProperty Name="subCity" Relationship="melkofilm_dbModel.FK_job_subCity" FromRole="job" ToRole="subCity" />
-    <NavigationProperty Name="jobAcceptUsers" Relationship="melkofilm_dbModel.FK_jobAcceptUser_job" FromRole="job" ToRole="jobAcceptUser" />
-    <NavigationProperty Name="jobPictures" Relationship="melkofilm_dbModel.FK_jobPicture_job" FromRole="job" ToRole="jobPicture" />
-  </EntityType>
-  <Association Name="FK_job_city">
-    <End Type="melkofilm_dbModel.city" Role="city" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="city">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="job">
-        <PropertyRef Name="cityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_job_childjobSubCategori">
-    <End Type="melkofilm_dbModel.childjobSubCategori" Role="childjobSubCategori" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="childjobSubCategori">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="job">
-        <PropertyRef Name="childjobSubCategoriId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_job_jobCategori">
-    <End Type="melkofilm_dbModel.jobCategori" Role="jobCategori" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="jobCategori">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="job">
-        <PropertyRef Name="jobCategoriId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_job_jobSubCategori">
-    <End Type="melkofilm_dbModel.jobSubCategori" Role="jobSubCategori" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="jobSubCategori">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="job">
-        <PropertyRef Name="jobSubCategoriId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_job_jobUser1">
-    <End Type="melkofilm_dbModel.jobUser" Role="jobUser" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="jobUser">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="job">
-        <PropertyRef Name="userId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_job_subCity">
-    <End Type="melkofilm_dbModel.subCity" Role="subCity" Multiplicity="0..1" />
-    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="subCity">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="job">
-        <PropertyRef Name="subCityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_jobAcceptUser_job">
-    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="melkofilm_dbModel.jobAcceptUser" Role="jobAcceptUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="job">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="jobAcceptUser">
-        <PropertyRef Name="jobId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_jobPicture_job">
-    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="melkofilm_dbModel.jobPicture" Role="jobPicture" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="job">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="jobPicture">
-        <PropertyRef Name="jobId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1031,6 +751,288 @@
       </Principal>
       <Dependent Role="user">
         <PropertyRef Name="rolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="job">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lon" Type="Double" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fullName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="cityId" Type="Int32" />
+    <Property Name="subCityId" Type="Int32" />
+    <Property Name="tahsilat" Type="Byte" />
+    <Property Name="otherMaharat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sabeghe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="jobCategoriId" Type="Int32" />
+    <Property Name="jobSubCategoriId" Type="Int32" />
+    <Property Name="childjobSubCategoriId" Type="Int32" />
+    <Property Name="sharheVazayef" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="vazayefRoozaneVaHaftegiVaMahane" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="film" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="imageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="Mablagh" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="pExpire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apiToken" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userType" Type="Byte" />
+    <Property Name="advertisementType" Type="Byte" />
+    <Property Name="adminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="city" Relationship="melkofilm_dbModel.FK_job_city" FromRole="job" ToRole="city" />
+    <NavigationProperty Name="childjobSubCategori" Relationship="melkofilm_dbModel.FK_job_childjobSubCategori" FromRole="job" ToRole="childjobSubCategori" />
+    <NavigationProperty Name="jobCategori" Relationship="melkofilm_dbModel.FK_job_jobCategori" FromRole="job" ToRole="jobCategori" />
+    <NavigationProperty Name="jobSubCategori" Relationship="melkofilm_dbModel.FK_job_jobSubCategori" FromRole="job" ToRole="jobSubCategori" />
+    <NavigationProperty Name="jobUser" Relationship="melkofilm_dbModel.FK_job_jobUser1" FromRole="job" ToRole="jobUser" />
+    <NavigationProperty Name="subCity" Relationship="melkofilm_dbModel.FK_job_subCity" FromRole="job" ToRole="subCity" />
+    <NavigationProperty Name="jobAcceptUsers" Relationship="melkofilm_dbModel.FK_jobAcceptUser_job" FromRole="job" ToRole="jobAcceptUser" />
+    <NavigationProperty Name="jobPictures" Relationship="melkofilm_dbModel.FK_jobPicture_job" FromRole="job" ToRole="jobPicture" />
+  </EntityType>
+  <Association Name="FK_job_city">
+    <End Type="melkofilm_dbModel.city" Role="city" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_childjobSubCategori">
+    <End Type="melkofilm_dbModel.childjobSubCategori" Role="childjobSubCategori" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="childjobSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="childjobSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_jobCategori">
+    <End Type="melkofilm_dbModel.jobCategori" Role="jobCategori" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="jobCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_jobSubCategori">
+    <End Type="melkofilm_dbModel.jobSubCategori" Role="jobSubCategori" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="jobSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_jobUser1">
+    <End Type="melkofilm_dbModel.jobUser" Role="jobUser" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_job_subCity">
+    <End Type="melkofilm_dbModel.subCity" Role="subCity" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subCity">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="job">
+        <PropertyRef Name="subCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jobAcceptUser_job">
+    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="melkofilm_dbModel.jobAcceptUser" Role="jobAcceptUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="job">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="jobAcceptUser">
+        <PropertyRef Name="jobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jobPicture_job">
+    <End Type="melkofilm_dbModel.job" Role="job" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="melkofilm_dbModel.jobPicture" Role="jobPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="job">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="jobPicture">
+        <PropertyRef Name="jobId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="equipment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EquipmentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lat" Type="Double" />
+    <Property Name="lon" Type="Double" />
+    <Property Name="mobile" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="imageUrl" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+    <Property Name="cityId" Type="Int32" />
+    <Property Name="subCityId" Type="Int32" />
+    <Property Name="equipmentCategoriId" Type="Int32" />
+    <Property Name="equipmentSubCategoriId" Type="Int32" />
+    <Property Name="childEquipmentSubCategoriId" Type="Int32" />
+    <Property Name="apiToken" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="pexpireDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="userType" Type="Byte" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="film" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="adminComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="city" Relationship="melkofilm_dbModel.FK_equipment_city" FromRole="equipment" ToRole="city" />
+    <NavigationProperty Name="childSubEquipmentCategori" Relationship="melkofilm_dbModel.FK_equipment_childSubEquipmentCategori" FromRole="equipment" ToRole="childSubEquipmentCategori" />
+    <NavigationProperty Name="equipmentCategori" Relationship="melkofilm_dbModel.FK_equipment_equipmentCategori" FromRole="equipment" ToRole="equipmentCategori" />
+    <NavigationProperty Name="equipmentSubCategori" Relationship="melkofilm_dbModel.FK_equipment_equipmentSubCategori" FromRole="equipment" ToRole="equipmentSubCategori" />
+    <NavigationProperty Name="equipmetUser" Relationship="melkofilm_dbModel.FK_equipment_equipmetUser" FromRole="equipment" ToRole="equipmetUser" />
+    <NavigationProperty Name="subCity" Relationship="melkofilm_dbModel.FK_equipment_subCity" FromRole="equipment" ToRole="subCity" />
+    <NavigationProperty Name="equipmentPictures" Relationship="melkofilm_dbModel.FK_equipmentPictures_equipment" FromRole="equipment" ToRole="equipmentPicture" />
+    <NavigationProperty Name="equipmetAcceptUsers" Relationship="melkofilm_dbModel.FK_equipmetAcceptUser_equipment" FromRole="equipment" ToRole="equipmetAcceptUser" />
+  </EntityType>
+  <Association Name="FK_equipment_city">
+    <End Type="melkofilm_dbModel.city" Role="city" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="cityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_childSubEquipmentCategori">
+    <End Type="melkofilm_dbModel.childSubEquipmentCategori" Role="childSubEquipmentCategori" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="childSubEquipmentCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="childEquipmentSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_equipmentCategori">
+    <End Type="melkofilm_dbModel.equipmentCategori" Role="equipmentCategori" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipmentCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="equipmentCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_equipmentSubCategori">
+    <End Type="melkofilm_dbModel.equipmentSubCategori" Role="equipmentSubCategori" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipmentSubCategori">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="equipmentSubCategoriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_equipmetUser">
+    <End Type="melkofilm_dbModel.equipmetUser" Role="equipmetUser" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipmetUser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipment_subCity">
+    <End Type="melkofilm_dbModel.subCity" Role="subCity" Multiplicity="0..1" />
+    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subCity">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipment">
+        <PropertyRef Name="subCityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipmentPictures_equipment">
+    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="melkofilm_dbModel.equipmentPicture" Role="equipmentPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipmentPicture">
+        <PropertyRef Name="equipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_equipmetAcceptUser_equipment">
+    <End Type="melkofilm_dbModel.equipment" Role="equipment" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="melkofilm_dbModel.equipmetAcceptUser" Role="equipmetAcceptUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="equipment">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="equipmetAcceptUser">
+        <PropertyRef Name="equipmentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

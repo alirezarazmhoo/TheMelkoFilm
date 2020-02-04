@@ -49,6 +49,7 @@ namespace FinalMelkBin.Models
         public Nullable<byte> userType { get; set; }
         public Nullable<byte> advertisementType { get; set; }
         public string adminComment { get; set; }
+        public System.DateTime ExpireDate { get; set; }
     
         public virtual city city { get; set; }
         public virtual childjobSubCategori childjobSubCategori { get; set; }
